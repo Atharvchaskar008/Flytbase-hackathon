@@ -1,6 +1,7 @@
 """
 AERIX — Traffic Detection & Tracking Pipeline
 Level 1: Detect and track every road user with stable identity.
+Object-Level Insight: Fine-grained classification & Real-unit Kinematics (speed & acceleration).
 
 Standalone entry point — no database required.
 
@@ -8,12 +9,13 @@ Usage:
     python -m ml_pipeline.traffic_pipeline --video path/to/drone_video.mp4
 
 Pipeline:
-    Video → Frame Sampler → YOLO detect_traffic → ByteTrack → Track Manager → Annotated MP4
+    Video → Frame Sampler → YOLO detect_traffic → ByteTrack → Track Manager (Fine-Grained & Kinematics) → Annotated MP4
 """
 
 import cv2
 import json
 import time
+import math
 import logging
 import argparse
 from pathlib import Path
@@ -38,10 +40,21 @@ logger = logging.getLogger("aerix")
 # ── Annotation colours (BGR) ────────────────────────────────────────
 CLASS_COLORS = {
     'person':     (0, 220, 0),       # green
+    'pedestrian': (0, 220, 0),       # green
     'car':        (255, 144, 30),     # dodger-blue
+    'sedan':      (255, 144, 30),     # blue
+    'suv':        (255, 180, 50),     # light blue
+    'hatchback':  (230, 120, 20),     # dark blue
+    'van':        (200, 160, 40),     # slate
     'motorcycle': (0, 255, 255),      # yellow
+    'scooter':    (50, 205, 255),     # light yellow
     'bus':        (0, 165, 255),      # orange
+    'minibus':    (30, 180, 255),     # light orange
+    'transit_bus':(0, 140, 255),      # deep orange
+    'coach_bus':  (0, 120, 230),      # amber
     'truck':      (0, 0, 255),        # red
+    'lgv':        (50, 50, 255),      # light red
+    'hgv':        (0, 0, 200),        # dark red
     'bicycle':    (255, 0, 255),      # magenta
 }
 DEFAULT_COLOR = (200, 200, 200)
@@ -57,10 +70,12 @@ def process_traffic_video(
     model: str = "yolov8s.pt",
     use_real_yolo: bool = True,
     draw_trails: bool = True,
+    draw_vectors: bool = True,
     trail_length: int = 30,
+    pixels_per_meter: float = 15.0,
     progress_callback: Optional[Any] = None,
 ) -> Dict[str, Any]:
-    """Process a traffic video through the AERIX pipeline.
+    """Process a traffic video through the AERIX pipeline with fine-grained classification & kinematics.
 
     Args:
         video_path: Path to input video file
@@ -70,10 +85,13 @@ def process_traffic_video(
         model: YOLO model name/path (default: yolov8s.pt)
         use_real_yolo: True for real YOLO, False for mock (testing)
         draw_trails: Whether to draw trajectory trails behind objects
+        draw_vectors: Whether to draw velocity vectors on objects
         trail_length: Number of recent points for trajectory trail
+        pixels_per_meter: Pixel to real-world meter conversion scale
+        progress_callback: Optional callback for streaming progress updates
 
     Returns:
-        Summary dict with processing statistics
+        Summary dict with processing statistics, kinematics, and fine-grained classification
     """
     start_time = time.time()
 
@@ -85,13 +103,14 @@ def process_traffic_video(
     output_path = str(Path(output_path).resolve())
 
     logger.info("=" * 60)
-    logger.info("AERIX — Traffic Detection & Tracking")
+    logger.info("AERIX — Traffic Detection, Tracking & Kinematics")
     logger.info("=" * 60)
     logger.info("Input  : %s", video_path)
     logger.info("Output : %s", output_path)
     logger.info("Model  : %s (real=%s)", model, use_real_yolo)
     logger.info("Sample : every %d frames", sample_rate)
     logger.info("Conf   : %.2f", confidence_threshold)
+    logger.info("Scale  : %.2f px/m", pixels_per_meter)
 
     # ── Initialise components ────────────────────────────────────────
     try:
@@ -119,7 +138,10 @@ def process_traffic_video(
         frame_rate=effective_fps,
     )
 
-    track_manager = TrackManager()
+    track_manager = TrackManager(
+        pixels_per_meter=pixels_per_meter,
+        sample_rate=sample_rate,
+    )
 
     # ── Video writer ─────────────────────────────────────────────────
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
@@ -156,14 +178,20 @@ def process_traffic_video(
             # ── Track ────────────────────────────────────────────────
             tracked_objects, lifecycle = tracker.update(detections, frame_number)
 
-            # ── Update track history ─────────────────────────────────
-            track_manager.update(tracked_objects, frame_number, loader.fps)
+            # ── Update track history & kinematics ────────────────────
+            track_manager.update(
+                tracked_objects,
+                frame_number,
+                loader.fps,
+                frame_shape=(loader.height, loader.width),
+            )
             track_manager.mark_lost(lifecycle.get('lost', []))
 
             # ── Annotate & write ─────────────────────────────────────
             annotated = _annotate_frame(
                 frame, tracked_objects, track_manager,
                 draw_trails=draw_trails,
+                draw_vectors=draw_vectors,
                 trail_length=trail_length,
             )
             writer.write(annotated)
@@ -173,6 +201,8 @@ def process_traffic_video(
                 pct = round((frame_number / max(1, loader.total_frames)) * 100, 1)
                 all_sums = track_manager.get_all_summaries()
                 class_counts = track_manager.get_class_counts()
+                fine_counts = track_manager.get_fine_grained_class_counts()
+                kin_summary = track_manager.get_kinematics_summary()
 
                 if progress_callback:
                     try:
@@ -184,6 +214,8 @@ def process_traffic_video(
                             "detections": total_detections,
                             "unique_tracks": len(all_sums),
                             "class_counts": class_counts,
+                            "fine_grained_class_counts": fine_counts,
+                            "kinematics": kin_summary,
                             "active_tracks": len(tracker.active_tracks),
                         })
                     except Exception:
@@ -191,9 +223,10 @@ def process_traffic_video(
 
                 if frames_processed % 90 == 0 or frames_processed == 1:
                     logger.info(
-                        "FRAME %d (%.0f%%) | %d detections | %d active tracks | %d total tracks",
+                        "FRAME %d (%.0f%%) | %d dets | %d active | %d total | Avg Spd: %.1f km/h",
                         frame_number, pct, len(detections),
                         len(tracker.active_tracks), len(track_manager),
+                        kin_summary.get("average_speed_kmh", 0.0),
                     )
 
     except Exception as proc_exc:
@@ -208,6 +241,8 @@ def process_traffic_video(
     elapsed = time.time() - start_time
     all_summaries = track_manager.get_all_summaries()
     class_counts = track_manager.get_class_counts()
+    fine_counts = track_manager.get_fine_grained_class_counts()
+    kinematics_summary = track_manager.get_kinematics_summary()
 
     # Calculate overall average confidence across all tracked instances
     all_confs = [
@@ -226,6 +261,9 @@ def process_traffic_video(
         "unique_tracks": len(all_summaries),
         "classes_detected": sorted(class_counts.keys()),
         "class_counts": class_counts,
+        "fine_grained_class_counts": fine_counts,
+        "kinematics_summary": kinematics_summary,
+        "pixels_per_meter": pixels_per_meter,
         "average_confidence": avg_conf,
         "output_video": output_path,
         "processing_time": round(elapsed, 2),
@@ -235,10 +273,7 @@ def process_traffic_video(
         "model": model,
         "sample_rate": sample_rate,
         "confidence_threshold": confidence_threshold,
-        "limitations": [
-            "COCO model does not distinguish LGV/HGV — all trucks reported as 'truck'",
-            "No Re-ID across cameras (single-camera tracking only)",
-        ],
+        "tracks": all_summaries,
     }
 
     logger.info("=" * 60)
@@ -247,6 +282,9 @@ def process_traffic_video(
     logger.info("  Total detections : %d", total_detections)
     logger.info("  Unique tracks    : %d", len(all_summaries))
     logger.info("  Classes          : %s", class_counts)
+    logger.info("  Fine-Grained     : %s", fine_counts)
+    logger.info("  Avg Fleet Speed  : %.1f km/h | Max Speed: %.1f km/h",
+                kinematics_summary["average_speed_kmh"], kinematics_summary["max_speed_kmh"])
     logger.info("  Processing time  : %.1fs", elapsed)
     logger.info("  Output video     : %s", output_path)
     logger.info("=" * 60)
@@ -261,28 +299,48 @@ def _annotate_frame(
     tracked_objects: List[Dict[str, Any]],
     track_manager: TrackManager,
     draw_trails: bool = True,
+    draw_vectors: bool = True,
     trail_length: int = 30,
 ) -> np.ndarray:
-    """Draw bounding boxes, labels, track IDs, and trajectory trails."""
+    """Draw bounding boxes, fine-grained labels, track IDs, kinematics (km/h & m/s²), and trajectory trails."""
     annotated = frame.copy()
 
     for obj in tracked_objects:
         x, y, w, h = [int(v) for v in obj['bbox']]
         track_id = obj['track_id']
-        cls = obj['class_label'].upper()
-        conf = obj['confidence']
-        color = CLASS_COLORS.get(obj['class_label'], DEFAULT_COLOR)
+        fg_cls = obj.get('fine_grained_class', obj['class_label']).upper()
+        conf = obj.get('confidence', 0.0)
+        color = CLASS_COLORS.get(obj.get('fine_grained_class', obj['class_label']), DEFAULT_COLOR)
+
+        kin = obj.get('kinematics', {})
+        speed_kmh = kin.get('current_speed_kmh', 0.0)
+        accel_ms2 = kin.get('current_acceleration_ms2', 0.0)
+        direction = kin.get('cardinal_direction', '')
+        status = kin.get('motion_status', 'Cruising')
 
         # Bounding box
         cv2.rectangle(annotated, (x, y), (x + w, y + h), color, 2)
 
-        # Label: CLASS #ID CONF
-        label = f"{cls} #{track_id} {conf:.2f}"
-        (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.55, 2)
-        cv2.rectangle(annotated, (x, y - th - 8), (x + tw + 4, y), color, -1)
+        # Top Label: FG_CLASS #ID CONF
+        top_label = f"{fg_cls} #{track_id}"
+        (tw, th), _ = cv2.getTextSize(top_label, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 2)
+        cv2.rectangle(annotated, (x, y - th - 8), (x + tw + 6, y), color, -1)
         cv2.putText(
-            annotated, label, (x + 2, y - 4),
-            cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 2,
+            annotated, top_label, (x + 3, y - 4),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2,
+        )
+
+        # Bottom Kinematics Tag: SPEED km/h | ACCEL m/s² [DIR]
+        accel_sign = "+" if accel_ms2 >= 0 else ""
+        kin_label = f"{speed_kmh:.1f} km/h | {accel_sign}{accel_ms2:.1f}m/s2 {direction}"
+        (kw, kh), _ = cv2.getTextSize(kin_label, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)
+        
+        # Tag background
+        cv2.rectangle(annotated, (x, y + h), (x + kw + 6, y + h + kh + 6), (20, 20, 20), -1)
+        cv2.rectangle(annotated, (x, y + h), (x + kw + 6, y + h + kh + 6), color, 1)
+        cv2.putText(
+            annotated, kin_label, (x + 3, y + h + kh + 2),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.42, (240, 240, 240), 1,
         )
 
         # Trajectory trail
@@ -290,17 +348,31 @@ def _annotate_frame(
             points = track_manager.get_trajectory_points(track_id, last_n=trail_length)
             if len(points) > 1:
                 for i in range(1, len(points)):
-                    # Fade trail: older points are more transparent
                     alpha = i / len(points)
                     thickness = max(1, int(alpha * 3))
                     cv2.line(annotated, points[i - 1], points[i], color, thickness)
 
-    # Frame info overlay
-    info = f"Tracks: {len(tracked_objects)} | Total: {len(track_manager)}"
-    cv2.putText(
-        annotated, info, (10, 30),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2,
-    )
+        # Velocity Vector Arrow
+        if draw_vectors and 'velocity_vector_ms' in kin:
+            vx, vy = kin['velocity_vector_ms']
+            if abs(vx) > 0.1 or abs(vy) > 0.1:
+                cx = int(x + w / 2)
+                cy = int(y + h / 2)
+                # Scale velocity vector for visual arrow length
+                end_x = int(cx + vx * 6.0)
+                end_y = int(cy + vy * 6.0)
+                cv2.arrowedLine(annotated, (cx, cy), (end_x, end_y), (0, 255, 255), 2, tipLength=0.3)
+
+    # Frame info HUD overlay (Top-Left Glassmorphic Box)
+    kin_summary = track_manager.get_kinematics_summary()
+    info_title = f"AERIX OBJECT INTELLIGENCE | Active: {len(tracked_objects)} | Fleet: {len(track_manager)}"
+    info_speed = f"Avg Speed: {kin_summary['average_speed_kmh']:.1f} km/h | Max: {kin_summary['max_speed_kmh']:.1f} km/h"
+
+    cv2.rectangle(annotated, (8, 8), (460, 68), (15, 23, 42), -1)
+    cv2.rectangle(annotated, (8, 8), (460, 68), (59, 130, 246), 1)
+
+    cv2.putText(annotated, info_title, (16, 32), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (255, 255, 255), 2)
+    cv2.putText(annotated, info_speed, (16, 56), cv2.FONT_HERSHEY_SIMPLEX, 0.48, (56, 189, 248), 1)
 
     return annotated
 
@@ -315,6 +387,8 @@ def _error_result(video_path: str, reason: str) -> Dict[str, Any]:
         "detections": 0,
         "unique_tracks": 0,
         "classes_detected": [],
+        "fine_grained_class_counts": {},
+        "kinematics_summary": {},
         "output_video": None,
     }
 
@@ -323,7 +397,7 @@ def _error_result(video_path: str, reason: str) -> Dict[str, Any]:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="AERIX — Traffic Detection & Tracking (Level 1)",
+        description="AERIX — Traffic Detection, Tracking & Kinematics",
     )
     parser.add_argument("--video", required=True, help="Path to input video file")
     parser.add_argument("--output", default=None, help="Path for annotated output video")
@@ -331,12 +405,16 @@ def main():
                         help="Process every Nth frame (default: 3)")
     parser.add_argument("--confidence", type=float, default=0.3,
                         help="Min detection confidence (default: 0.3)")
+    parser.add_argument("--pixels-per-meter", type=float, default=15.0,
+                        help="Pixel to meter calibration factor (default: 15.0)")
     parser.add_argument("--model", default="yolov8s.pt",
                         help="YOLO model (default: yolov8s.pt)")
     parser.add_argument("--mock", action="store_true",
                         help="Use mock detector (no GPU needed)")
     parser.add_argument("--no-trails", action="store_true",
                         help="Disable trajectory trails")
+    parser.add_argument("--no-vectors", action="store_true",
+                        help="Disable velocity vector arrows")
     parser.add_argument("--json-output", default=None,
                         help="Optional path to save results summary JSON")
     args = parser.parse_args()
@@ -349,6 +427,8 @@ def main():
         model=args.model,
         use_real_yolo=not args.mock,
         draw_trails=not args.no_trails,
+        draw_vectors=not args.no_vectors,
+        pixels_per_meter=args.pixels_per_meter,
     )
 
     if args.json_output:

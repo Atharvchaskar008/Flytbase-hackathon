@@ -1,10 +1,10 @@
 {
-  "video_id": "upload_91d614bd",
+  "video_id": "sample_drone_traffic",
   "status": "completed",
-  "frames_processed": 2400,
-  "detections": 12480,
+  "frames_processed": 150,
+  "detections": 690,
   "detection_errors": 0,
-  "unique_tracks": 179,
+  "unique_tracks": 35,
   "classes_detected": [
     "bus",
     "car",
@@ -13,28 +13,8919 @@
     "truck"
   ],
   "class_counts": {
-    "car": 124,
-    "truck": 18,
-    "motorcycle": 28,
-    "bus": 4,
-    "person": 5
+    "car": 2,
+    "truck": 1,
+    "person": 1,
+    "motorcycle": 30,
+    "bus": 1
   },
-  "average_confidence": 0.9142,
-  "output_video": "storage/videos/level1_output.mp4",
-  "processing_time": 450.0,
-  "processing_time_seconds": 450.0,
-  "effective_fps_processed": 5.3,
+  "fine_grained_class_counts": {
+    "sedan": 2,
+    "lgv": 1,
+    "pedestrian": 1,
+    "motorcycle": 30,
+    "transit_bus": 1
+  },
+  "kinematics_summary": {
+    "average_speed_kmh": 2.19,
+    "max_speed_kmh": 28.8,
+    "speeding_count": 0,
+    "stopped_count": 31,
+    "active_moving_count": 4
+  },
+  "pixels_per_meter": 15.0,
+  "average_confidence": 0.9023,
+  "output_video": "C:\\Users\\athar\\OneDrive\\Desktop\\My personal Projects for learning\\Flytbase hackathon\\AERIX\\storage\\videos\\level1_output.mp4",
+  "processing_time": 6.35,
+  "processing_time_seconds": 6.35,
+  "effective_fps_processed": 23.6,
   "tracker_config": {
     "track_activation_threshold": 0.25,
     "lost_track_buffer": 30,
     "minimum_matching_threshold": 0.8,
     "frame_rate": 10
   },
-  "model": "yolov8n.pt",
+  "model": "yolov8s.pt",
   "sample_rate": 3,
-  "confidence_threshold": 0.25,
-  "limitations": [
-    "COCO model does not distinguish LGV/HGV — all trucks reported as 'truck'",
-    "Single-camera tracking only (no cross-camera Re-ID)"
+  "confidence_threshold": 0.3,
+  "tracks": [
+    {
+      "track_id": 1,
+      "class_label": "car",
+      "fine_grained_class": "sedan",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.667,
+        "area_pixels": 6000.0,
+        "relative_area": 0.00651,
+        "bbox_width": 100.0,
+        "bbox_height": 60.0
+      },
+      "first_seen_frame": 0,
+      "last_seen_frame": 294,
+      "first_seen_timestamp": 0.0,
+      "last_seen_timestamp": 9.8,
+      "duration_frames": 294,
+      "total_detections": 99,
+      "avg_confidence": 0.93,
+      "kinematics": {
+        "current_speed_ms": 8.0,
+        "current_speed_kmh": 28.8,
+        "average_speed_kmh": 28.8,
+        "max_speed_kmh": 28.8,
+        "current_acceleration_ms2": -0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "E",
+        "motion_status": "Cruising",
+        "velocity_vector_ms": [
+          8.0,
+          0.0
+        ],
+        "distance_traveled_meters": 78.4
+      },
+      "trajectory": [
+        {
+          "frame": 0,
+          "timestamp": 0.0,
+          "bbox": [
+            200.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 3,
+          "timestamp": 0.1,
+          "bbox": [
+            212.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 6,
+          "timestamp": 0.2,
+          "bbox": [
+            224.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 9,
+          "timestamp": 0.3,
+          "bbox": [
+            236.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 12,
+          "timestamp": 0.4,
+          "bbox": [
+            248.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 15,
+          "timestamp": 0.5,
+          "bbox": [
+            260.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 18,
+          "timestamp": 0.6,
+          "bbox": [
+            272.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 21,
+          "timestamp": 0.7,
+          "bbox": [
+            284.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 24,
+          "timestamp": 0.8,
+          "bbox": [
+            296.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 27,
+          "timestamp": 0.9,
+          "bbox": [
+            308.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 30,
+          "timestamp": 1.0,
+          "bbox": [
+            320.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 33,
+          "timestamp": 1.1,
+          "bbox": [
+            332.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 36,
+          "timestamp": 1.2,
+          "bbox": [
+            344.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 39,
+          "timestamp": 1.3,
+          "bbox": [
+            356.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 42,
+          "timestamp": 1.4,
+          "bbox": [
+            368.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 45,
+          "timestamp": 1.5,
+          "bbox": [
+            380.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 48,
+          "timestamp": 1.6,
+          "bbox": [
+            392.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 51,
+          "timestamp": 1.7,
+          "bbox": [
+            404.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 54,
+          "timestamp": 1.8,
+          "bbox": [
+            416.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 57,
+          "timestamp": 1.9,
+          "bbox": [
+            428.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 60,
+          "timestamp": 2.0,
+          "bbox": [
+            440.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 63,
+          "timestamp": 2.1,
+          "bbox": [
+            452.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 66,
+          "timestamp": 2.2,
+          "bbox": [
+            464.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 69,
+          "timestamp": 2.3,
+          "bbox": [
+            476.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 72,
+          "timestamp": 2.4,
+          "bbox": [
+            488.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 75,
+          "timestamp": 2.5,
+          "bbox": [
+            500.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 78,
+          "timestamp": 2.6,
+          "bbox": [
+            512.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 81,
+          "timestamp": 2.7,
+          "bbox": [
+            524.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 84,
+          "timestamp": 2.8,
+          "bbox": [
+            536.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 87,
+          "timestamp": 2.9,
+          "bbox": [
+            548.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 90,
+          "timestamp": 3.0,
+          "bbox": [
+            560.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 93,
+          "timestamp": 3.1,
+          "bbox": [
+            572.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 96,
+          "timestamp": 3.2,
+          "bbox": [
+            584.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 99,
+          "timestamp": 3.3,
+          "bbox": [
+            596.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 102,
+          "timestamp": 3.4,
+          "bbox": [
+            608.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 105,
+          "timestamp": 3.5,
+          "bbox": [
+            620.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 108,
+          "timestamp": 3.6,
+          "bbox": [
+            632.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 111,
+          "timestamp": 3.7,
+          "bbox": [
+            644.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 114,
+          "timestamp": 3.8,
+          "bbox": [
+            656.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 117,
+          "timestamp": 3.9,
+          "bbox": [
+            668.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 120,
+          "timestamp": 4.0,
+          "bbox": [
+            680.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 123,
+          "timestamp": 4.1,
+          "bbox": [
+            692.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 126,
+          "timestamp": 4.2,
+          "bbox": [
+            704.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 129,
+          "timestamp": 4.3,
+          "bbox": [
+            716.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 132,
+          "timestamp": 4.4,
+          "bbox": [
+            728.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 135,
+          "timestamp": 4.5,
+          "bbox": [
+            740.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 138,
+          "timestamp": 4.6,
+          "bbox": [
+            752.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 141,
+          "timestamp": 4.7,
+          "bbox": [
+            764.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 144,
+          "timestamp": 4.8,
+          "bbox": [
+            776.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 147,
+          "timestamp": 4.9,
+          "bbox": [
+            788.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 150,
+          "timestamp": 5.0,
+          "bbox": [
+            800.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 153,
+          "timestamp": 5.1,
+          "bbox": [
+            812.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 156,
+          "timestamp": 5.2,
+          "bbox": [
+            824.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 159,
+          "timestamp": 5.3,
+          "bbox": [
+            836.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 162,
+          "timestamp": 5.4,
+          "bbox": [
+            848.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 165,
+          "timestamp": 5.5,
+          "bbox": [
+            860.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 168,
+          "timestamp": 5.6,
+          "bbox": [
+            872.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 171,
+          "timestamp": 5.7,
+          "bbox": [
+            884.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 174,
+          "timestamp": 5.8,
+          "bbox": [
+            896.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 177,
+          "timestamp": 5.9,
+          "bbox": [
+            908.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 180,
+          "timestamp": 6.0,
+          "bbox": [
+            920.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 183,
+          "timestamp": 6.1,
+          "bbox": [
+            932.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 186,
+          "timestamp": 6.2,
+          "bbox": [
+            944.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 189,
+          "timestamp": 6.3,
+          "bbox": [
+            956.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 192,
+          "timestamp": 6.4,
+          "bbox": [
+            968.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 195,
+          "timestamp": 6.5,
+          "bbox": [
+            980.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 198,
+          "timestamp": 6.6,
+          "bbox": [
+            992.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 201,
+          "timestamp": 6.7,
+          "bbox": [
+            1004.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 204,
+          "timestamp": 6.8,
+          "bbox": [
+            1016.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 207,
+          "timestamp": 6.9,
+          "bbox": [
+            1028.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 210,
+          "timestamp": 7.0,
+          "bbox": [
+            1040.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 213,
+          "timestamp": 7.1,
+          "bbox": [
+            1052.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 216,
+          "timestamp": 7.2,
+          "bbox": [
+            1064.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 219,
+          "timestamp": 7.3,
+          "bbox": [
+            1076.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 222,
+          "timestamp": 7.4,
+          "bbox": [
+            1088.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 225,
+          "timestamp": 7.5,
+          "bbox": [
+            1100.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 228,
+          "timestamp": 7.6,
+          "bbox": [
+            1112.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 231,
+          "timestamp": 7.7,
+          "bbox": [
+            1124.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 234,
+          "timestamp": 7.8,
+          "bbox": [
+            1136.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 237,
+          "timestamp": 7.9,
+          "bbox": [
+            1148.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 240,
+          "timestamp": 8.0,
+          "bbox": [
+            1160.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 243,
+          "timestamp": 8.1,
+          "bbox": [
+            1172.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 246,
+          "timestamp": 8.2,
+          "bbox": [
+            1184.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 249,
+          "timestamp": 8.3,
+          "bbox": [
+            1196.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 252,
+          "timestamp": 8.4,
+          "bbox": [
+            1208.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 255,
+          "timestamp": 8.5,
+          "bbox": [
+            1220.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 258,
+          "timestamp": 8.6,
+          "bbox": [
+            1232.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 261,
+          "timestamp": 8.7,
+          "bbox": [
+            1244.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 264,
+          "timestamp": 8.8,
+          "bbox": [
+            1256.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 267,
+          "timestamp": 8.9,
+          "bbox": [
+            1268.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 270,
+          "timestamp": 9.0,
+          "bbox": [
+            1280.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 273,
+          "timestamp": 9.1,
+          "bbox": [
+            1292.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 276,
+          "timestamp": 9.2,
+          "bbox": [
+            1304.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 279,
+          "timestamp": 9.3,
+          "bbox": [
+            1316.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 282,
+          "timestamp": 9.4,
+          "bbox": [
+            1328.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 285,
+          "timestamp": 9.5,
+          "bbox": [
+            1340.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 288,
+          "timestamp": 9.6,
+          "bbox": [
+            1352.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 291,
+          "timestamp": 9.7,
+          "bbox": [
+            1364.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 294,
+          "timestamp": 9.8,
+          "bbox": [
+            1376.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        }
+      ],
+      "confidence_history": [
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574
+      ]
+    },
+    {
+      "track_id": 2,
+      "class_label": "truck",
+      "fine_grained_class": "lgv",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.75,
+        "area_pixels": 11200.0,
+        "relative_area": 0.012153,
+        "bbox_width": 140.0,
+        "bbox_height": 80.0
+      },
+      "first_seen_frame": 0,
+      "last_seen_frame": 447,
+      "first_seen_timestamp": 0.0,
+      "last_seen_timestamp": 14.9,
+      "duration_frames": 447,
+      "total_detections": 150,
+      "avg_confidence": 0.88,
+      "kinematics": {
+        "current_speed_ms": 1.94,
+        "current_speed_kmh": 6.98,
+        "average_speed_kmh": 4.62,
+        "max_speed_kmh": 7.17,
+        "current_acceleration_ms2": -0.33,
+        "heading_degrees": 180.0,
+        "cardinal_direction": "W",
+        "motion_status": "Cruising",
+        "velocity_vector_ms": [
+          -1.92,
+          0.0
+        ],
+        "distance_traveled_meters": 19.11
+      },
+      "trajectory": [
+        {
+          "frame": 0,
+          "timestamp": 0.0,
+          "bbox": [
+            400.0,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 3,
+          "timestamp": 0.1,
+          "bbox": [
+            402.98876953125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 6,
+          "timestamp": 0.2,
+          "bbox": [
+            405.910400390625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 9,
+          "timestamp": 0.3,
+          "bbox": [
+            408.6993103027344,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 12,
+          "timestamp": 0.4,
+          "bbox": [
+            411.2928466796875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 15,
+          "timestamp": 0.5,
+          "bbox": [
+            413.6327819824219,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 18,
+          "timestamp": 0.6,
+          "bbox": [
+            415.6665344238281,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 21,
+          "timestamp": 0.7,
+          "bbox": [
+            417.34844970703125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 24,
+          "timestamp": 0.8,
+          "bbox": [
+            418.6407775878906,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 27,
+          "timestamp": 0.9,
+          "bbox": [
+            419.51446533203125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 30,
+          "timestamp": 1.0,
+          "bbox": [
+            419.94989013671875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 33,
+          "timestamp": 1.1,
+          "bbox": [
+            419.9372863769531,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 36,
+          "timestamp": 1.2,
+          "bbox": [
+            419.4769592285156,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 39,
+          "timestamp": 1.3,
+          "bbox": [
+            418.5791931152344,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 42,
+          "timestamp": 1.4,
+          "bbox": [
+            417.2641906738281,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 45,
+          "timestamp": 1.5,
+          "bbox": [
+            415.56146240234375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 48,
+          "timestamp": 1.6,
+          "bbox": [
+            413.50927734375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 51,
+          "timestamp": 1.7,
+          "bbox": [
+            411.1536865234375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 54,
+          "timestamp": 1.8,
+          "bbox": [
+            408.547607421875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 57,
+          "timestamp": 1.9,
+          "bbox": [
+            405.74957275390625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 60,
+          "timestamp": 2.0,
+          "bbox": [
+            402.8223876953125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 63,
+          "timestamp": 2.1,
+          "bbox": [
+            399.83184814453125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 66,
+          "timestamp": 2.2,
+          "bbox": [
+            396.8450927734375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 69,
+          "timestamp": 2.3,
+          "bbox": [
+            393.9291687011719,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 72,
+          "timestamp": 2.4,
+          "bbox": [
+            391.14959716796875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 75,
+          "timestamp": 2.5,
+          "bbox": [
+            388.56878662109375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 78,
+          "timestamp": 2.6,
+          "bbox": [
+            386.24468994140625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 81,
+          "timestamp": 2.7,
+          "bbox": [
+            384.2294921875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 84,
+          "timestamp": 2.8,
+          "bbox": [
+            382.5684814453125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 87,
+          "timestamp": 2.9,
+          "bbox": [
+            381.2989501953125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 90,
+          "timestamp": 3.0,
+          "bbox": [
+            380.44940185546875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 93,
+          "timestamp": 3.1,
+          "bbox": [
+            380.0389099121094,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 96,
+          "timestamp": 3.2,
+          "bbox": [
+            380.07672119140625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 99,
+          "timestamp": 3.3,
+          "bbox": [
+            380.56195068359375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 102,
+          "timestamp": 3.4,
+          "bbox": [
+            381.48370361328125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 105,
+          "timestamp": 3.5,
+          "bbox": [
+            382.8213195800781,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 108,
+          "timestamp": 3.6,
+          "bbox": [
+            384.5447082519531,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 111,
+          "timestamp": 3.7,
+          "bbox": [
+            386.6152038574219,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 114,
+          "timestamp": 3.8,
+          "bbox": [
+            388.9862976074219,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 117,
+          "timestamp": 3.9,
+          "bbox": [
+            391.6047058105469,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 120,
+          "timestamp": 4.0,
+          "bbox": [
+            394.41168212890625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 123,
+          "timestamp": 4.1,
+          "bbox": [
+            397.3441467285156,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 126,
+          "timestamp": 4.2,
+          "bbox": [
+            400.3362731933594,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 129,
+          "timestamp": 4.3,
+          "bbox": [
+            403.3208312988281,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 132,
+          "timestamp": 4.4,
+          "bbox": [
+            406.2308349609375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 135,
+          "timestamp": 4.5,
+          "bbox": [
+            409.0008850097656,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 138,
+          "timestamp": 4.6,
+          "bbox": [
+            411.56878662109375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 141,
+          "timestamp": 4.7,
+          "bbox": [
+            413.87689208984375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 144,
+          "timestamp": 4.8,
+          "bbox": [
+            415.87335205078125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 147,
+          "timestamp": 4.9,
+          "bbox": [
+            417.5133361816406,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 150,
+          "timestamp": 5.0,
+          "bbox": [
+            418.760009765625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 153,
+          "timestamp": 5.1,
+          "bbox": [
+            419.5853576660156,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 156,
+          "timestamp": 5.2,
+          "bbox": [
+            419.9708557128906,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 159,
+          "timestamp": 5.3,
+          "bbox": [
+            419.9078674316406,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 162,
+          "timestamp": 5.4,
+          "bbox": [
+            419.3977966308594,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 165,
+          "timestamp": 5.5,
+          "bbox": [
+            418.45208740234375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 168,
+          "timestamp": 5.6,
+          "bbox": [
+            417.09197998046875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 171,
+          "timestamp": 5.7,
+          "bbox": [
+            415.3480224609375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 174,
+          "timestamp": 5.8,
+          "bbox": [
+            413.2593994140625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 177,
+          "timestamp": 5.9,
+          "bbox": [
+            410.8729553222656,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 180,
+          "timestamp": 6.0,
+          "bbox": [
+            408.24237060546875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 183,
+          "timestamp": 6.1,
+          "bbox": [
+            405.4266662597656,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 186,
+          "timestamp": 6.2,
+          "bbox": [
+            402.48907470703125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 189,
+          "timestamp": 6.3,
+          "bbox": [
+            399.49560546875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 192,
+          "timestamp": 6.4,
+          "bbox": [
+            396.5134582519531,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 195,
+          "timestamp": 6.5,
+          "bbox": [
+            393.609619140625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 198,
+          "timestamp": 6.6,
+          "bbox": [
+            390.8492736816406,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 201,
+          "timestamp": 6.7,
+          "bbox": [
+            388.2944641113281,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 204,
+          "timestamp": 6.8,
+          "bbox": [
+            386.00250244140625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 207,
+          "timestamp": 6.9,
+          "bbox": [
+            384.02490234375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 210,
+          "timestamp": 7.0,
+          "bbox": [
+            382.4060974121094,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 213,
+          "timestamp": 7.1,
+          "bbox": [
+            381.182373046875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 216,
+          "timestamp": 7.2,
+          "bbox": [
+            380.38128662109375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 219,
+          "timestamp": 7.3,
+          "bbox": [
+            380.020751953125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 222,
+          "timestamp": 7.4,
+          "bbox": [
+            380.10894775390625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 225,
+          "timestamp": 7.5,
+          "bbox": [
+            380.6438293457031,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 228,
+          "timestamp": 7.6,
+          "bbox": [
+            381.6134338378906,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 231,
+          "timestamp": 7.7,
+          "bbox": [
+            382.9959411621094,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 234,
+          "timestamp": 7.8,
+          "bbox": [
+            384.76031494140625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 237,
+          "timestamp": 7.9,
+          "bbox": [
+            386.8669738769531,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 240,
+          "timestamp": 8.0,
+          "bbox": [
+            389.2685546875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 243,
+          "timestamp": 8.1,
+          "bbox": [
+            391.9111328125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 246,
+          "timestamp": 8.2,
+          "bbox": [
+            394.7353515625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 249,
+          "timestamp": 8.3,
+          "bbox": [
+            397.6778259277344,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 252,
+          "timestamp": 8.4,
+          "bbox": [
+            400.6724548339844,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 255,
+          "timestamp": 8.5,
+          "bbox": [
+            403.6519775390625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 258,
+          "timestamp": 8.6,
+          "bbox": [
+            406.54949951171875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 261,
+          "timestamp": 8.7,
+          "bbox": [
+            409.2998962402344,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 264,
+          "timestamp": 8.8,
+          "bbox": [
+            411.8414611816406,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 267,
+          "timestamp": 8.9,
+          "bbox": [
+            414.1170959472656,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 270,
+          "timestamp": 9.0,
+          "bbox": [
+            416.07568359375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 273,
+          "timestamp": 9.1,
+          "bbox": [
+            417.6732482910156,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 276,
+          "timestamp": 9.2,
+          "bbox": [
+            418.8739013671875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 279,
+          "timestamp": 9.3,
+          "bbox": [
+            419.65069580078125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 282,
+          "timestamp": 9.4,
+          "bbox": [
+            419.9861755371094,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 285,
+          "timestamp": 9.5,
+          "bbox": [
+            419.8728332519531,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 288,
+          "timestamp": 9.6,
+          "bbox": [
+            419.3131408691406,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 291,
+          "timestamp": 9.7,
+          "bbox": [
+            418.31976318359375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 294,
+          "timestamp": 9.8,
+          "bbox": [
+            416.9149475097656,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 297,
+          "timestamp": 9.9,
+          "bbox": [
+            415.1302490234375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 300,
+          "timestamp": 10.0,
+          "bbox": [
+            413.0057678222656,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 303,
+          "timestamp": 10.1,
+          "bbox": [
+            410.5892028808594,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 306,
+          "timestamp": 10.2,
+          "bbox": [
+            407.934814453125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 309,
+          "timestamp": 10.3,
+          "bbox": [
+            405.10223388671875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 312,
+          "timestamp": 10.4,
+          "bbox": [
+            402.1550598144531,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 315,
+          "timestamp": 10.5,
+          "bbox": [
+            399.1595153808594,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 318,
+          "timestamp": 10.6,
+          "bbox": [
+            396.1828308105469,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 321,
+          "timestamp": 10.7,
+          "bbox": [
+            393.2918701171875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 324,
+          "timestamp": 10.8,
+          "bbox": [
+            390.55157470703125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 327,
+          "timestamp": 10.9,
+          "bbox": [
+            388.0234375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 330,
+          "timestamp": 11.0,
+          "bbox": [
+            385.7642822265625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 333,
+          "timestamp": 11.1,
+          "bbox": [
+            383.8248596191406,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 336,
+          "timestamp": 11.2,
+          "bbox": [
+            382.2486572265625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 339,
+          "timestamp": 11.3,
+          "bbox": [
+            381.0711364746094,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 342,
+          "timestamp": 11.4,
+          "bbox": [
+            380.3186950683594,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 345,
+          "timestamp": 11.5,
+          "bbox": [
+            380.0082702636719,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 348,
+          "timestamp": 11.6,
+          "bbox": [
+            380.1468200683594,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 351,
+          "timestamp": 11.7,
+          "bbox": [
+            380.731201171875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 354,
+          "timestamp": 11.8,
+          "bbox": [
+            381.74835205078125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 357,
+          "timestamp": 11.9,
+          "bbox": [
+            383.1753845214844,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 360,
+          "timestamp": 12.0,
+          "bbox": [
+            384.9802551269531,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 363,
+          "timestamp": 12.1,
+          "bbox": [
+            387.1224365234375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 366,
+          "timestamp": 12.2,
+          "bbox": [
+            389.5538330078125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 369,
+          "timestamp": 12.3,
+          "bbox": [
+            392.2198181152344,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 372,
+          "timestamp": 12.4,
+          "bbox": [
+            395.0605163574219,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 375,
+          "timestamp": 12.5,
+          "bbox": [
+            398.0121765136719,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 378,
+          "timestamp": 12.6,
+          "bbox": [
+            401.0084533691406,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 381,
+          "timestamp": 12.7,
+          "bbox": [
+            403.9820861816406,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 384,
+          "timestamp": 12.8,
+          "bbox": [
+            406.8663024902344,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 387,
+          "timestamp": 12.9,
+          "bbox": [
+            409.5963134765625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 390,
+          "timestamp": 13.0,
+          "bbox": [
+            412.1108093261719,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 393,
+          "timestamp": 13.1,
+          "bbox": [
+            414.3533020019531,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 396,
+          "timestamp": 13.2,
+          "bbox": [
+            416.2734680175781,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 399,
+          "timestamp": 13.3,
+          "bbox": [
+            417.82818603515625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 402,
+          "timestamp": 13.4,
+          "bbox": [
+            418.98248291015625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 405,
+          "timestamp": 13.5,
+          "bbox": [
+            419.71051025390625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 408,
+          "timestamp": 13.6,
+          "bbox": [
+            419.995849609375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 411,
+          "timestamp": 13.7,
+          "bbox": [
+            419.8321533203125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 414,
+          "timestamp": 13.8,
+          "bbox": [
+            419.2230529785156,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 417,
+          "timestamp": 13.9,
+          "bbox": [
+            418.1822509765625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 420,
+          "timestamp": 14.0,
+          "bbox": [
+            416.7331237792969,
+            200.0,
+            139.99996948242188,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 423,
+          "timestamp": 14.1,
+          "bbox": [
+            414.9081726074219,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 426,
+          "timestamp": 14.2,
+          "bbox": [
+            412.7484436035156,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 429,
+          "timestamp": 14.3,
+          "bbox": [
+            410.30242919921875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 432,
+          "timestamp": 14.4,
+          "bbox": [
+            407.625,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 435,
+          "timestamp": 14.5,
+          "bbox": [
+            404.7763671875,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 438,
+          "timestamp": 14.6,
+          "bbox": [
+            401.8204345703125,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 441,
+          "timestamp": 14.7,
+          "bbox": [
+            398.8236389160156,
+            200.0,
+            140.00003051757812,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 444,
+          "timestamp": 14.8,
+          "bbox": [
+            395.853271484375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        },
+        {
+          "frame": 447,
+          "timestamp": 14.9,
+          "bbox": [
+            392.97601318359375,
+            200.0,
+            140.0,
+            80.0
+          ],
+          "confidence": 0.88
+        }
+      ],
+      "confidence_history": [
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284,
+        0.8799999952316284
+      ]
+    },
+    {
+      "track_id": 3,
+      "class_label": "person",
+      "fine_grained_class": "pedestrian",
+      "fine_grained_attributes": {
+        "aspect_ratio": 0.444,
+        "area_pixels": 3600.0,
+        "relative_area": 0.003906,
+        "bbox_width": 40.0,
+        "bbox_height": 90.0
+      },
+      "first_seen_frame": 0,
+      "last_seen_frame": 447,
+      "first_seen_timestamp": 0.0,
+      "last_seen_timestamp": 14.9,
+      "duration_frames": 447,
+      "total_detections": 150,
+      "avg_confidence": 0.91,
+      "kinematics": {
+        "current_speed_ms": 4.0,
+        "current_speed_kmh": 14.4,
+        "average_speed_kmh": 14.4,
+        "max_speed_kmh": 14.4,
+        "current_acceleration_ms2": -0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "E",
+        "motion_status": "Cruising",
+        "velocity_vector_ms": [
+          4.0,
+          0.0
+        ],
+        "distance_traveled_meters": 59.6
+      },
+      "trajectory": [
+        {
+          "frame": 0,
+          "timestamp": 0.0,
+          "bbox": [
+            100.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 3,
+          "timestamp": 0.1,
+          "bbox": [
+            106.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 6,
+          "timestamp": 0.2,
+          "bbox": [
+            112.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 9,
+          "timestamp": 0.3,
+          "bbox": [
+            118.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 12,
+          "timestamp": 0.4,
+          "bbox": [
+            124.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 15,
+          "timestamp": 0.5,
+          "bbox": [
+            130.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 18,
+          "timestamp": 0.6,
+          "bbox": [
+            136.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 21,
+          "timestamp": 0.7,
+          "bbox": [
+            142.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 24,
+          "timestamp": 0.8,
+          "bbox": [
+            148.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 27,
+          "timestamp": 0.9,
+          "bbox": [
+            154.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 30,
+          "timestamp": 1.0,
+          "bbox": [
+            160.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 33,
+          "timestamp": 1.1,
+          "bbox": [
+            166.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 36,
+          "timestamp": 1.2,
+          "bbox": [
+            172.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 39,
+          "timestamp": 1.3,
+          "bbox": [
+            178.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 42,
+          "timestamp": 1.4,
+          "bbox": [
+            184.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 45,
+          "timestamp": 1.5,
+          "bbox": [
+            190.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 48,
+          "timestamp": 1.6,
+          "bbox": [
+            196.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 51,
+          "timestamp": 1.7,
+          "bbox": [
+            202.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 54,
+          "timestamp": 1.8,
+          "bbox": [
+            208.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 57,
+          "timestamp": 1.9,
+          "bbox": [
+            214.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 60,
+          "timestamp": 2.0,
+          "bbox": [
+            220.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 63,
+          "timestamp": 2.1,
+          "bbox": [
+            226.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 66,
+          "timestamp": 2.2,
+          "bbox": [
+            232.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 69,
+          "timestamp": 2.3,
+          "bbox": [
+            238.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 72,
+          "timestamp": 2.4,
+          "bbox": [
+            244.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 75,
+          "timestamp": 2.5,
+          "bbox": [
+            250.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 78,
+          "timestamp": 2.6,
+          "bbox": [
+            256.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 81,
+          "timestamp": 2.7,
+          "bbox": [
+            262.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 84,
+          "timestamp": 2.8,
+          "bbox": [
+            268.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 87,
+          "timestamp": 2.9,
+          "bbox": [
+            274.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 90,
+          "timestamp": 3.0,
+          "bbox": [
+            280.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 93,
+          "timestamp": 3.1,
+          "bbox": [
+            286.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 96,
+          "timestamp": 3.2,
+          "bbox": [
+            292.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 99,
+          "timestamp": 3.3,
+          "bbox": [
+            298.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 102,
+          "timestamp": 3.4,
+          "bbox": [
+            304.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 105,
+          "timestamp": 3.5,
+          "bbox": [
+            310.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 108,
+          "timestamp": 3.6,
+          "bbox": [
+            316.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 111,
+          "timestamp": 3.7,
+          "bbox": [
+            322.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 114,
+          "timestamp": 3.8,
+          "bbox": [
+            328.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 117,
+          "timestamp": 3.9,
+          "bbox": [
+            334.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 120,
+          "timestamp": 4.0,
+          "bbox": [
+            340.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 123,
+          "timestamp": 4.1,
+          "bbox": [
+            346.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 126,
+          "timestamp": 4.2,
+          "bbox": [
+            352.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 129,
+          "timestamp": 4.3,
+          "bbox": [
+            358.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 132,
+          "timestamp": 4.4,
+          "bbox": [
+            364.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 135,
+          "timestamp": 4.5,
+          "bbox": [
+            370.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 138,
+          "timestamp": 4.6,
+          "bbox": [
+            376.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 141,
+          "timestamp": 4.7,
+          "bbox": [
+            382.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 144,
+          "timestamp": 4.8,
+          "bbox": [
+            388.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 147,
+          "timestamp": 4.9,
+          "bbox": [
+            394.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 150,
+          "timestamp": 5.0,
+          "bbox": [
+            400.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 153,
+          "timestamp": 5.1,
+          "bbox": [
+            406.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 156,
+          "timestamp": 5.2,
+          "bbox": [
+            412.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 159,
+          "timestamp": 5.3,
+          "bbox": [
+            418.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 162,
+          "timestamp": 5.4,
+          "bbox": [
+            424.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 165,
+          "timestamp": 5.5,
+          "bbox": [
+            430.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 168,
+          "timestamp": 5.6,
+          "bbox": [
+            436.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 171,
+          "timestamp": 5.7,
+          "bbox": [
+            442.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 174,
+          "timestamp": 5.8,
+          "bbox": [
+            448.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 177,
+          "timestamp": 5.9,
+          "bbox": [
+            454.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 180,
+          "timestamp": 6.0,
+          "bbox": [
+            460.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 183,
+          "timestamp": 6.1,
+          "bbox": [
+            466.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 186,
+          "timestamp": 6.2,
+          "bbox": [
+            472.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 189,
+          "timestamp": 6.3,
+          "bbox": [
+            478.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 192,
+          "timestamp": 6.4,
+          "bbox": [
+            484.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 195,
+          "timestamp": 6.5,
+          "bbox": [
+            490.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 198,
+          "timestamp": 6.6,
+          "bbox": [
+            496.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 201,
+          "timestamp": 6.7,
+          "bbox": [
+            502.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 204,
+          "timestamp": 6.8,
+          "bbox": [
+            508.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 207,
+          "timestamp": 6.9,
+          "bbox": [
+            514.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 210,
+          "timestamp": 7.0,
+          "bbox": [
+            520.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 213,
+          "timestamp": 7.1,
+          "bbox": [
+            526.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 216,
+          "timestamp": 7.2,
+          "bbox": [
+            532.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 219,
+          "timestamp": 7.3,
+          "bbox": [
+            538.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 222,
+          "timestamp": 7.4,
+          "bbox": [
+            544.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 225,
+          "timestamp": 7.5,
+          "bbox": [
+            550.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 228,
+          "timestamp": 7.6,
+          "bbox": [
+            556.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 231,
+          "timestamp": 7.7,
+          "bbox": [
+            562.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 234,
+          "timestamp": 7.8,
+          "bbox": [
+            568.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 237,
+          "timestamp": 7.9,
+          "bbox": [
+            574.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 240,
+          "timestamp": 8.0,
+          "bbox": [
+            580.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 243,
+          "timestamp": 8.1,
+          "bbox": [
+            586.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 246,
+          "timestamp": 8.2,
+          "bbox": [
+            592.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 249,
+          "timestamp": 8.3,
+          "bbox": [
+            598.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 252,
+          "timestamp": 8.4,
+          "bbox": [
+            604.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 255,
+          "timestamp": 8.5,
+          "bbox": [
+            610.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 258,
+          "timestamp": 8.6,
+          "bbox": [
+            616.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 261,
+          "timestamp": 8.7,
+          "bbox": [
+            622.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 264,
+          "timestamp": 8.8,
+          "bbox": [
+            628.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 267,
+          "timestamp": 8.9,
+          "bbox": [
+            634.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 270,
+          "timestamp": 9.0,
+          "bbox": [
+            640.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 273,
+          "timestamp": 9.1,
+          "bbox": [
+            646.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 276,
+          "timestamp": 9.2,
+          "bbox": [
+            652.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 279,
+          "timestamp": 9.3,
+          "bbox": [
+            658.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 282,
+          "timestamp": 9.4,
+          "bbox": [
+            664.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 285,
+          "timestamp": 9.5,
+          "bbox": [
+            670.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 288,
+          "timestamp": 9.6,
+          "bbox": [
+            676.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 291,
+          "timestamp": 9.7,
+          "bbox": [
+            682.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 294,
+          "timestamp": 9.8,
+          "bbox": [
+            688.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 297,
+          "timestamp": 9.9,
+          "bbox": [
+            694.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 300,
+          "timestamp": 10.0,
+          "bbox": [
+            700.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 303,
+          "timestamp": 10.1,
+          "bbox": [
+            706.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 306,
+          "timestamp": 10.2,
+          "bbox": [
+            712.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 309,
+          "timestamp": 10.3,
+          "bbox": [
+            718.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 312,
+          "timestamp": 10.4,
+          "bbox": [
+            724.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 315,
+          "timestamp": 10.5,
+          "bbox": [
+            730.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 318,
+          "timestamp": 10.6,
+          "bbox": [
+            736.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 321,
+          "timestamp": 10.7,
+          "bbox": [
+            742.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 324,
+          "timestamp": 10.8,
+          "bbox": [
+            748.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 327,
+          "timestamp": 10.9,
+          "bbox": [
+            754.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 330,
+          "timestamp": 11.0,
+          "bbox": [
+            760.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 333,
+          "timestamp": 11.1,
+          "bbox": [
+            766.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 336,
+          "timestamp": 11.2,
+          "bbox": [
+            772.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 339,
+          "timestamp": 11.3,
+          "bbox": [
+            778.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 342,
+          "timestamp": 11.4,
+          "bbox": [
+            784.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 345,
+          "timestamp": 11.5,
+          "bbox": [
+            790.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 348,
+          "timestamp": 11.6,
+          "bbox": [
+            796.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 351,
+          "timestamp": 11.7,
+          "bbox": [
+            802.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 354,
+          "timestamp": 11.8,
+          "bbox": [
+            808.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 357,
+          "timestamp": 11.9,
+          "bbox": [
+            814.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 360,
+          "timestamp": 12.0,
+          "bbox": [
+            820.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 363,
+          "timestamp": 12.1,
+          "bbox": [
+            826.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 366,
+          "timestamp": 12.2,
+          "bbox": [
+            832.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 369,
+          "timestamp": 12.3,
+          "bbox": [
+            838.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 372,
+          "timestamp": 12.4,
+          "bbox": [
+            844.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 375,
+          "timestamp": 12.5,
+          "bbox": [
+            850.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 378,
+          "timestamp": 12.6,
+          "bbox": [
+            856.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 381,
+          "timestamp": 12.7,
+          "bbox": [
+            862.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 384,
+          "timestamp": 12.8,
+          "bbox": [
+            868.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 387,
+          "timestamp": 12.9,
+          "bbox": [
+            874.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 390,
+          "timestamp": 13.0,
+          "bbox": [
+            880.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 393,
+          "timestamp": 13.1,
+          "bbox": [
+            886.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 396,
+          "timestamp": 13.2,
+          "bbox": [
+            892.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 399,
+          "timestamp": 13.3,
+          "bbox": [
+            898.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 402,
+          "timestamp": 13.4,
+          "bbox": [
+            904.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 405,
+          "timestamp": 13.5,
+          "bbox": [
+            910.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 408,
+          "timestamp": 13.6,
+          "bbox": [
+            916.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 411,
+          "timestamp": 13.7,
+          "bbox": [
+            922.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 414,
+          "timestamp": 13.8,
+          "bbox": [
+            928.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 417,
+          "timestamp": 13.9,
+          "bbox": [
+            934.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 420,
+          "timestamp": 14.0,
+          "bbox": [
+            940.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 423,
+          "timestamp": 14.1,
+          "bbox": [
+            946.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 426,
+          "timestamp": 14.2,
+          "bbox": [
+            952.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 429,
+          "timestamp": 14.3,
+          "bbox": [
+            958.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 432,
+          "timestamp": 14.4,
+          "bbox": [
+            964.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 435,
+          "timestamp": 14.5,
+          "bbox": [
+            970.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 438,
+          "timestamp": 14.6,
+          "bbox": [
+            976.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 441,
+          "timestamp": 14.7,
+          "bbox": [
+            982.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 444,
+          "timestamp": 14.8,
+          "bbox": [
+            988.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        },
+        {
+          "frame": 447,
+          "timestamp": 14.9,
+          "bbox": [
+            994.0,
+            400.0,
+            40.0,
+            90.0
+          ],
+          "confidence": 0.91
+        }
+      ],
+      "confidence_history": [
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437,
+        0.9100000262260437
+      ]
+    },
+    {
+      "track_id": 4,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 0,
+      "last_seen_frame": 0,
+      "first_seen_timestamp": 0.0,
+      "last_seen_timestamp": 0.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 0,
+          "timestamp": 0.0,
+          "bbox": [
+            600.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 5,
+      "class_label": "bus",
+      "fine_grained_class": "transit_bus",
+      "fine_grained_attributes": {
+        "aspect_ratio": 2.286,
+        "area_pixels": 11200.0,
+        "relative_area": 0.012153,
+        "bbox_width": 160.0,
+        "bbox_height": 70.0
+      },
+      "first_seen_frame": 0,
+      "last_seen_frame": 447,
+      "first_seen_timestamp": 0.0,
+      "last_seen_timestamp": 14.9,
+      "duration_frames": 447,
+      "total_detections": 150,
+      "avg_confidence": 0.9,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "E",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 0,
+          "timestamp": 0.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 3,
+          "timestamp": 0.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 6,
+          "timestamp": 0.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 9,
+          "timestamp": 0.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 12,
+          "timestamp": 0.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 15,
+          "timestamp": 0.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 18,
+          "timestamp": 0.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 21,
+          "timestamp": 0.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 24,
+          "timestamp": 0.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 27,
+          "timestamp": 0.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 30,
+          "timestamp": 1.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 33,
+          "timestamp": 1.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 36,
+          "timestamp": 1.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 39,
+          "timestamp": 1.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 42,
+          "timestamp": 1.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 45,
+          "timestamp": 1.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 48,
+          "timestamp": 1.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 51,
+          "timestamp": 1.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 54,
+          "timestamp": 1.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 57,
+          "timestamp": 1.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 60,
+          "timestamp": 2.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 63,
+          "timestamp": 2.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 66,
+          "timestamp": 2.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 69,
+          "timestamp": 2.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 72,
+          "timestamp": 2.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 75,
+          "timestamp": 2.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 78,
+          "timestamp": 2.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 81,
+          "timestamp": 2.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 84,
+          "timestamp": 2.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 87,
+          "timestamp": 2.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 90,
+          "timestamp": 3.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 93,
+          "timestamp": 3.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 96,
+          "timestamp": 3.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 99,
+          "timestamp": 3.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 102,
+          "timestamp": 3.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 105,
+          "timestamp": 3.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 108,
+          "timestamp": 3.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 111,
+          "timestamp": 3.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 114,
+          "timestamp": 3.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 117,
+          "timestamp": 3.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 120,
+          "timestamp": 4.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 123,
+          "timestamp": 4.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 126,
+          "timestamp": 4.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 129,
+          "timestamp": 4.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 132,
+          "timestamp": 4.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 135,
+          "timestamp": 4.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 138,
+          "timestamp": 4.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 141,
+          "timestamp": 4.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 144,
+          "timestamp": 4.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 147,
+          "timestamp": 4.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 150,
+          "timestamp": 5.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 153,
+          "timestamp": 5.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 156,
+          "timestamp": 5.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 159,
+          "timestamp": 5.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 162,
+          "timestamp": 5.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 165,
+          "timestamp": 5.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 168,
+          "timestamp": 5.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 171,
+          "timestamp": 5.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 174,
+          "timestamp": 5.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 177,
+          "timestamp": 5.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 180,
+          "timestamp": 6.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 183,
+          "timestamp": 6.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 186,
+          "timestamp": 6.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 189,
+          "timestamp": 6.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 192,
+          "timestamp": 6.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 195,
+          "timestamp": 6.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 198,
+          "timestamp": 6.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 201,
+          "timestamp": 6.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 204,
+          "timestamp": 6.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 207,
+          "timestamp": 6.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 210,
+          "timestamp": 7.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 213,
+          "timestamp": 7.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 216,
+          "timestamp": 7.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 219,
+          "timestamp": 7.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 222,
+          "timestamp": 7.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 225,
+          "timestamp": 7.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 228,
+          "timestamp": 7.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 231,
+          "timestamp": 7.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 234,
+          "timestamp": 7.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 237,
+          "timestamp": 7.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 240,
+          "timestamp": 8.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 243,
+          "timestamp": 8.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 246,
+          "timestamp": 8.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 249,
+          "timestamp": 8.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 252,
+          "timestamp": 8.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 255,
+          "timestamp": 8.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 258,
+          "timestamp": 8.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 261,
+          "timestamp": 8.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 264,
+          "timestamp": 8.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 267,
+          "timestamp": 8.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 270,
+          "timestamp": 9.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 273,
+          "timestamp": 9.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 276,
+          "timestamp": 9.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 279,
+          "timestamp": 9.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 282,
+          "timestamp": 9.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 285,
+          "timestamp": 9.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 288,
+          "timestamp": 9.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 291,
+          "timestamp": 9.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 294,
+          "timestamp": 9.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 297,
+          "timestamp": 9.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 300,
+          "timestamp": 10.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 303,
+          "timestamp": 10.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 306,
+          "timestamp": 10.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 309,
+          "timestamp": 10.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 312,
+          "timestamp": 10.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 315,
+          "timestamp": 10.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 318,
+          "timestamp": 10.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 321,
+          "timestamp": 10.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 324,
+          "timestamp": 10.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 327,
+          "timestamp": 10.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 330,
+          "timestamp": 11.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 333,
+          "timestamp": 11.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 336,
+          "timestamp": 11.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 339,
+          "timestamp": 11.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 342,
+          "timestamp": 11.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 345,
+          "timestamp": 11.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 348,
+          "timestamp": 11.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 351,
+          "timestamp": 11.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 354,
+          "timestamp": 11.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 357,
+          "timestamp": 11.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 360,
+          "timestamp": 12.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 363,
+          "timestamp": 12.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 366,
+          "timestamp": 12.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 369,
+          "timestamp": 12.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 372,
+          "timestamp": 12.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 375,
+          "timestamp": 12.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 378,
+          "timestamp": 12.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 381,
+          "timestamp": 12.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 384,
+          "timestamp": 12.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 387,
+          "timestamp": 12.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 390,
+          "timestamp": 13.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 393,
+          "timestamp": 13.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 396,
+          "timestamp": 13.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 399,
+          "timestamp": 13.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 402,
+          "timestamp": 13.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 405,
+          "timestamp": 13.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 408,
+          "timestamp": 13.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 411,
+          "timestamp": 13.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 414,
+          "timestamp": 13.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 417,
+          "timestamp": 13.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 420,
+          "timestamp": 14.0,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 423,
+          "timestamp": 14.1,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 426,
+          "timestamp": 14.2,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 429,
+          "timestamp": 14.3,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 432,
+          "timestamp": 14.4,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 435,
+          "timestamp": 14.5,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 438,
+          "timestamp": 14.6,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 441,
+          "timestamp": 14.7,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 444,
+          "timestamp": 14.8,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        },
+        {
+          "frame": 447,
+          "timestamp": 14.9,
+          "bbox": [
+            500.0,
+            150.0,
+            160.0,
+            70.0
+          ],
+          "confidence": 0.9
+        }
+      ],
+      "confidence_history": [
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421,
+        0.8999999761581421
+      ]
+    },
+    {
+      "track_id": 6,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 15,
+      "last_seen_frame": 15,
+      "first_seen_timestamp": 0.5,
+      "last_seen_timestamp": 0.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 15,
+          "timestamp": 0.5,
+          "bbox": [
+            690.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 7,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 30,
+      "last_seen_frame": 30,
+      "first_seen_timestamp": 1.0,
+      "last_seen_timestamp": 1.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 30,
+          "timestamp": 1.0,
+          "bbox": [
+            780.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 8,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 45,
+      "last_seen_frame": 45,
+      "first_seen_timestamp": 1.5,
+      "last_seen_timestamp": 1.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 45,
+          "timestamp": 1.5,
+          "bbox": [
+            870.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 9,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 60,
+      "last_seen_frame": 60,
+      "first_seen_timestamp": 2.0,
+      "last_seen_timestamp": 2.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 60,
+          "timestamp": 2.0,
+          "bbox": [
+            960.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 10,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 75,
+      "last_seen_frame": 75,
+      "first_seen_timestamp": 2.5,
+      "last_seen_timestamp": 2.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 75,
+          "timestamp": 2.5,
+          "bbox": [
+            1050.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 11,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 90,
+      "last_seen_frame": 90,
+      "first_seen_timestamp": 3.0,
+      "last_seen_timestamp": 3.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 90,
+          "timestamp": 3.0,
+          "bbox": [
+            1140.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 12,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 105,
+      "last_seen_frame": 105,
+      "first_seen_timestamp": 3.5,
+      "last_seen_timestamp": 3.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 105,
+          "timestamp": 3.5,
+          "bbox": [
+            1230.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 13,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 120,
+      "last_seen_frame": 120,
+      "first_seen_timestamp": 4.0,
+      "last_seen_timestamp": 4.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 120,
+          "timestamp": 4.0,
+          "bbox": [
+            1320.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 14,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 135,
+      "last_seen_frame": 135,
+      "first_seen_timestamp": 4.5,
+      "last_seen_timestamp": 4.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 135,
+          "timestamp": 4.5,
+          "bbox": [
+            1410.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 15,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 150,
+      "last_seen_frame": 150,
+      "first_seen_timestamp": 5.0,
+      "last_seen_timestamp": 5.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 150,
+          "timestamp": 5.0,
+          "bbox": [
+            1500.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 16,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 165,
+      "last_seen_frame": 165,
+      "first_seen_timestamp": 5.5,
+      "last_seen_timestamp": 5.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 165,
+          "timestamp": 5.5,
+          "bbox": [
+            1590.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 17,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 180,
+      "last_seen_frame": 180,
+      "first_seen_timestamp": 6.0,
+      "last_seen_timestamp": 6.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 180,
+          "timestamp": 6.0,
+          "bbox": [
+            1680.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 18,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 195,
+      "last_seen_frame": 195,
+      "first_seen_timestamp": 6.5,
+      "last_seen_timestamp": 6.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 195,
+          "timestamp": 6.5,
+          "bbox": [
+            1770.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 19,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 210,
+      "last_seen_frame": 210,
+      "first_seen_timestamp": 7.0,
+      "last_seen_timestamp": 7.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 210,
+          "timestamp": 7.0,
+          "bbox": [
+            640.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 20,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 225,
+      "last_seen_frame": 225,
+      "first_seen_timestamp": 7.5,
+      "last_seen_timestamp": 7.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 225,
+          "timestamp": 7.5,
+          "bbox": [
+            730.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 21,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 240,
+      "last_seen_frame": 240,
+      "first_seen_timestamp": 8.0,
+      "last_seen_timestamp": 8.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 240,
+          "timestamp": 8.0,
+          "bbox": [
+            820.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 22,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 255,
+      "last_seen_frame": 255,
+      "first_seen_timestamp": 8.5,
+      "last_seen_timestamp": 8.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 255,
+          "timestamp": 8.5,
+          "bbox": [
+            910.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 23,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 270,
+      "last_seen_frame": 270,
+      "first_seen_timestamp": 9.0,
+      "last_seen_timestamp": 9.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 270,
+          "timestamp": 9.0,
+          "bbox": [
+            1000.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 24,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 285,
+      "last_seen_frame": 285,
+      "first_seen_timestamp": 9.5,
+      "last_seen_timestamp": 9.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 285,
+          "timestamp": 9.5,
+          "bbox": [
+            1090.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 25,
+      "class_label": "car",
+      "fine_grained_class": "sedan",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.667,
+        "area_pixels": 6000.0,
+        "relative_area": 0.00651,
+        "bbox_width": 100.0,
+        "bbox_height": 60.0
+      },
+      "first_seen_frame": 300,
+      "last_seen_frame": 447,
+      "first_seen_timestamp": 10.0,
+      "last_seen_timestamp": 14.9,
+      "duration_frames": 147,
+      "total_detections": 50,
+      "avg_confidence": 0.93,
+      "kinematics": {
+        "current_speed_ms": 8.0,
+        "current_speed_kmh": 28.8,
+        "average_speed_kmh": 28.8,
+        "max_speed_kmh": 28.8,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "E",
+        "motion_status": "Cruising",
+        "velocity_vector_ms": [
+          8.0,
+          0.0
+        ],
+        "distance_traveled_meters": 39.2
+      },
+      "trajectory": [
+        {
+          "frame": 300,
+          "timestamp": 10.0,
+          "bbox": [
+            220.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 303,
+          "timestamp": 10.1,
+          "bbox": [
+            232.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 306,
+          "timestamp": 10.2,
+          "bbox": [
+            244.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 309,
+          "timestamp": 10.3,
+          "bbox": [
+            256.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 312,
+          "timestamp": 10.4,
+          "bbox": [
+            268.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 315,
+          "timestamp": 10.5,
+          "bbox": [
+            280.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 318,
+          "timestamp": 10.6,
+          "bbox": [
+            292.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 321,
+          "timestamp": 10.7,
+          "bbox": [
+            304.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 324,
+          "timestamp": 10.8,
+          "bbox": [
+            316.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 327,
+          "timestamp": 10.9,
+          "bbox": [
+            328.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 330,
+          "timestamp": 11.0,
+          "bbox": [
+            340.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 333,
+          "timestamp": 11.1,
+          "bbox": [
+            352.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 336,
+          "timestamp": 11.2,
+          "bbox": [
+            364.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 339,
+          "timestamp": 11.3,
+          "bbox": [
+            376.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 342,
+          "timestamp": 11.4,
+          "bbox": [
+            388.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 345,
+          "timestamp": 11.5,
+          "bbox": [
+            400.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 348,
+          "timestamp": 11.6,
+          "bbox": [
+            412.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 351,
+          "timestamp": 11.7,
+          "bbox": [
+            424.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 354,
+          "timestamp": 11.8,
+          "bbox": [
+            436.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 357,
+          "timestamp": 11.9,
+          "bbox": [
+            448.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 360,
+          "timestamp": 12.0,
+          "bbox": [
+            460.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 363,
+          "timestamp": 12.1,
+          "bbox": [
+            472.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 366,
+          "timestamp": 12.2,
+          "bbox": [
+            484.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 369,
+          "timestamp": 12.3,
+          "bbox": [
+            496.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 372,
+          "timestamp": 12.4,
+          "bbox": [
+            508.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 375,
+          "timestamp": 12.5,
+          "bbox": [
+            520.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 378,
+          "timestamp": 12.6,
+          "bbox": [
+            532.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 381,
+          "timestamp": 12.7,
+          "bbox": [
+            544.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 384,
+          "timestamp": 12.8,
+          "bbox": [
+            556.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 387,
+          "timestamp": 12.9,
+          "bbox": [
+            568.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 390,
+          "timestamp": 13.0,
+          "bbox": [
+            580.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 393,
+          "timestamp": 13.1,
+          "bbox": [
+            592.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 396,
+          "timestamp": 13.2,
+          "bbox": [
+            604.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 399,
+          "timestamp": 13.3,
+          "bbox": [
+            616.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 402,
+          "timestamp": 13.4,
+          "bbox": [
+            628.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 405,
+          "timestamp": 13.5,
+          "bbox": [
+            640.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 408,
+          "timestamp": 13.6,
+          "bbox": [
+            652.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 411,
+          "timestamp": 13.7,
+          "bbox": [
+            664.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 414,
+          "timestamp": 13.8,
+          "bbox": [
+            676.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 417,
+          "timestamp": 13.9,
+          "bbox": [
+            688.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 420,
+          "timestamp": 14.0,
+          "bbox": [
+            700.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 423,
+          "timestamp": 14.1,
+          "bbox": [
+            712.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 426,
+          "timestamp": 14.2,
+          "bbox": [
+            724.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 429,
+          "timestamp": 14.3,
+          "bbox": [
+            736.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 432,
+          "timestamp": 14.4,
+          "bbox": [
+            748.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 435,
+          "timestamp": 14.5,
+          "bbox": [
+            760.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 438,
+          "timestamp": 14.6,
+          "bbox": [
+            772.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 441,
+          "timestamp": 14.7,
+          "bbox": [
+            784.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 444,
+          "timestamp": 14.8,
+          "bbox": [
+            796.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        },
+        {
+          "frame": 447,
+          "timestamp": 14.9,
+          "bbox": [
+            808.0,
+            300.0,
+            100.0,
+            60.0
+          ],
+          "confidence": 0.93
+        }
+      ],
+      "confidence_history": [
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574,
+        0.9300000071525574
+      ]
+    },
+    {
+      "track_id": 26,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 300,
+      "last_seen_frame": 300,
+      "first_seen_timestamp": 10.0,
+      "last_seen_timestamp": 10.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 300,
+          "timestamp": 10.0,
+          "bbox": [
+            1180.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 27,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 315,
+      "last_seen_frame": 315,
+      "first_seen_timestamp": 10.5,
+      "last_seen_timestamp": 10.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 315,
+          "timestamp": 10.5,
+          "bbox": [
+            1270.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 28,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 330,
+      "last_seen_frame": 330,
+      "first_seen_timestamp": 11.0,
+      "last_seen_timestamp": 11.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 330,
+          "timestamp": 11.0,
+          "bbox": [
+            1360.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 29,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 345,
+      "last_seen_frame": 345,
+      "first_seen_timestamp": 11.5,
+      "last_seen_timestamp": 11.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 345,
+          "timestamp": 11.5,
+          "bbox": [
+            1450.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 30,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 360,
+      "last_seen_frame": 360,
+      "first_seen_timestamp": 12.0,
+      "last_seen_timestamp": 12.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 360,
+          "timestamp": 12.0,
+          "bbox": [
+            1540.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 31,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 375,
+      "last_seen_frame": 375,
+      "first_seen_timestamp": 12.5,
+      "last_seen_timestamp": 12.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 375,
+          "timestamp": 12.5,
+          "bbox": [
+            1630.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 32,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 390,
+      "last_seen_frame": 390,
+      "first_seen_timestamp": 13.0,
+      "last_seen_timestamp": 13.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 390,
+          "timestamp": 13.0,
+          "bbox": [
+            1720.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 33,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 405,
+      "last_seen_frame": 405,
+      "first_seen_timestamp": 13.5,
+      "last_seen_timestamp": 13.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 405,
+          "timestamp": 13.5,
+          "bbox": [
+            1810.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 34,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 420,
+      "last_seen_frame": 420,
+      "first_seen_timestamp": 14.0,
+      "last_seen_timestamp": 14.0,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 420,
+          "timestamp": 14.0,
+          "bbox": [
+            680.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    },
+    {
+      "track_id": 35,
+      "class_label": "motorcycle",
+      "fine_grained_class": "motorcycle",
+      "fine_grained_attributes": {
+        "aspect_ratio": 1.25,
+        "area_pixels": 2000.0,
+        "relative_area": 0.00217,
+        "bbox_width": 50.0,
+        "bbox_height": 40.0
+      },
+      "first_seen_frame": 435,
+      "last_seen_frame": 435,
+      "first_seen_timestamp": 14.5,
+      "last_seen_timestamp": 14.5,
+      "duration_frames": 0,
+      "total_detections": 1,
+      "avg_confidence": 0.85,
+      "kinematics": {
+        "current_speed_ms": 0.0,
+        "current_speed_kmh": 0.0,
+        "average_speed_kmh": 0.0,
+        "max_speed_kmh": 0.0,
+        "current_acceleration_ms2": 0.0,
+        "heading_degrees": 0.0,
+        "cardinal_direction": "N",
+        "motion_status": "Stopped",
+        "velocity_vector_ms": [
+          0.0,
+          0.0
+        ],
+        "distance_traveled_meters": 0.0
+      },
+      "trajectory": [
+        {
+          "frame": 435,
+          "timestamp": 14.5,
+          "bbox": [
+            770.0,
+            350.0,
+            50.0,
+            40.0
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "confidence_history": [
+        0.8500000238418579
+      ]
+    }
   ]
 }
