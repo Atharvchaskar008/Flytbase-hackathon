@@ -1,14 +1,23 @@
-# AERIX — Traffic Intelligence & Object-Level Kinematics Platform
+# AERIX — Autonomous Aerial Traffic Intelligence & Macroscopic Analytics Platform
 
-**AERIX** is an AI-powered visual intelligence platform engineered for **Aerial Drone Traffic Detection, Fine-Grained Classification, Multi-Object Tracking, and Real-Unit Kinematics**.
+**AERIX** is an AI-powered visual intelligence platform engineered for **Drone Traffic Detection, Fine-Grained Classification, Real-Unit Kinematics, and Macroscopic Spatial Analytics**.
 
 ---
 
-## 🌟 Core Capabilities
+## 🌟 Comprehensive Platform Capabilities
 
-- **Object-Level Insights & Fine-Grained Classification**:
+### 1. Macroscopic & Aggregate Traffic Analytics
+- **Turning Movements & Intersection Flows**: Automated classification of turning maneuvers (`Through / Straight`, `Left Turn`, `Right Turn`, `U-Turn`) and directional approach volumes (`Northbound`, `Southbound`, `Eastbound`, `Westbound`).
+- **Origin–Destination (O-D) Distributions**: Entry gate $\rightarrow$ Exit gate matrix with trip counts and route distribution percentages.
+- **Segment-Wise Speed Profiles & Speeding Hotspots**: Corridor discretization computing Mean Speed, 85th Percentile Speed (P85), 15th Percentile Speed (P15), Speed Variance, and spatial speeding risk heatmaps.
+- **Lane Volumes & Modal Split**: Lane-by-lane volume breakdown, average lane speed, and vehicle modal split percentages ($\% \text{Cars}, \% \text{Trucks}, \% \text{Buses}, \% \text{Motorcycles}$).
+- **Queue Length & Delay Estimation**: Real-world standing queue lengths in meters, queued vehicle count, and average dwell delay behind stop lines and bottlenecks.
+- **Density, Occupancy & Flow–Density (MFD) Relationships**: Traffic Density $k$ ($\text{veh/km}$), Road Area Occupancy percentage ($O\%$), Hourly Flow Rate $q$ ($\text{veh/hour}$), and Highway Capacity Manual Level of Service (LOS A to F).
+
+### 2. Object-Level Insights & Fine-Grained Classification
+- **Fine-Grained Sub-Types**:
   - `car` → `sedan`, `suv`, `hatchback`, `van`
-  - `truck` → `lgv` (Light Goods Vehicle / Pickup / Delivery Van) vs `hgv` (Heavy Goods Vehicle / Semi / Box Truck)
+  - `truck` → `lgv` (Light Goods Vehicle / Pickup / Van) vs `hgv` (Heavy Goods Vehicle / Semi / Box Truck)
   - `bus` → `minibus`, `transit_bus`, `coach_bus`
   - `motorcycle` → `scooter`, `motorcycle`
   - `person` → `pedestrian`
@@ -17,22 +26,23 @@
   - Calculates per-object instantaneous and smoothed **velocity in real units** ($\text{m/s}$ and $\text{km/h}$).
   - Calculates per-object **acceleration in real units** ($\text{m/s}^2$).
   - Computes 8-point compass cardinal directions ($\text{N, NE, E, SE, S, SW, W, NW}$) and heading angles ($0^\circ - 360^\circ$).
-  - Classifies dynamic motion status (`Cruising`, `Accelerating`, `Braking`, `Stopped`).
-  - Supports configurable metric scale (`--pixels-per-meter`, default $15.0\,\text{px/m}$) and Homography perspective matrix calibration.
+  - Dynamic motion states (`Cruising`, `Accelerating`, `Braking`, `Stopped`).
+  - Supports configurable metric scale (`--pixels-per-meter`, default $15.0\,\text{px/m}$) and Homography calibration.
+
+### 3. Tracking & Visual Analytics
 - **ByteTrack Persistent Identity**: High-performance multi-object tracking using Kalman motion state estimation and Hungarian assignment algorithms.
-- **Occlusion & Dwell Stability**: Maintains stable track IDs across short temporary occlusions, vehicle path crossings, and long dwell times at traffic signals.
 - **Trajectory Trails & Velocity Vectors**: Dynamic motion history trails and directional velocity vectors rendered on output videos.
-- **Interactive Web Dashboard**: Single-page dark-themed analytics interface (`http://localhost:8888`) with real-time Fleet Kinematics stats, Fine-Grained breakdown, and a live searchable Object Telemetry Table.
-- **Standalone Execution**: Runs completely standalone with zero database setup required.
+- **Interactive Web Dashboard**: Single-page dark-themed analytics interface (`http://localhost:8888`) with real-time Macroscopic Intelligence panels, turning movement charts, O-D matrix, speed profiles, and a live searchable Object Telemetry Table.
 
 ---
 
 ## 🏗️ Technical Architecture
 
-### Computer Vision & Kinematics Pipeline (`ml_pipeline/`)
+### Analytics & Computer Vision Pipeline (`ml_pipeline/`)
 - **YOLOv8 (`yolo_detector.py`)**: Multi-class traffic detection with configurable confidence thresholds.
 - **Fine-Grained Classifier (`fine_grained.py`)**: Geometric and visual sub-classifier resolving vehicle subtypes.
 - **Kinematics Engine (`kinematics.py`)**: Real-unit physics state estimator for velocity, acceleration, and heading vectors.
+- **Macroscopic Analytics Engine (`aggregate_analytics.py`)**: Computes turning movements, O-D flows, speed profiles, lane modal split, queues, density, occupancy, and LOS.
 - **ByteTrack (`bytetrack.py`)**: Two-stage association tracking wrapping `supervision.ByteTrack`.
 - **TrackManager (`track_manager.py`)**: In-memory track history maintaining per-frame bounding boxes, confidence histories, kinematics telemetry, and timestamps.
 - **TrafficPipeline (`traffic_pipeline.py`)**: Standalone pipeline orchestrator handling video ingestion, frame sampling, tracking, physics annotation, and MP4 video output.
@@ -49,7 +59,7 @@
 ```powershell
 python demo_server.py
 ```
-Open **`http://localhost:8888`** in your browser to view the interactive dashboard, inspect fine-grained vehicle types, and review per-object velocity & acceleration telemetry.
+Open **`http://localhost:8888`** in your browser to view the interactive dashboard.
 
 ### 2. Run Command Line Pipeline
 ```powershell
@@ -58,7 +68,7 @@ python -m ml_pipeline.traffic_pipeline --video "path/to/drone_video.mp4" --outpu
 
 ### 3. Run Automated Test Suite
 ```powershell
-python -m pytest tests/test_kinematics_and_fine_grained.py tests/test_traffic_detection.py -v
+python -m pytest tests/test_aggregate_traffic_analytics.py tests/test_kinematics_and_fine_grained.py tests/test_traffic_detection.py -v
 ```
 
 ---

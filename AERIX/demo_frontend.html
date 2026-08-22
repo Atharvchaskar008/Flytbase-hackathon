@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AERIX — Object-Level Traffic Intelligence & Kinematics</title>
+    <title>AERIX — Macroscopic & Object-Level Traffic Intelligence</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,6 +14,7 @@
             --accent: #3b82f6;
             --accent-glow: rgba(59, 130, 246, 0.3);
             --cyan: #06b6d4;
+            --purple: #8b5cf6;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -92,7 +93,7 @@
 
         /* ── Main Layout ────────────────────────── */
         .main {
-            max-width: 1480px;
+            max-width: 1520px;
             margin: 0 auto;
             padding: 2rem;
             display: flex;
@@ -266,8 +267,19 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .stat-highlight {
-            color: var(--cyan);
+        .stat-highlight { color: var(--cyan); }
+        .stat-purple { color: var(--purple); }
+
+        /* ── Macroscopic Sections ───────────────── */
+        .macro-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .macro-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
         }
 
         /* ── Class Distribution ─────────────────── */
@@ -297,7 +309,6 @@
         .dot-lgv { background: #f87171; }
         .dot-bus, .dot-transit_bus { background: #f59e0b; }
         .dot-minibus { background: #fbbf24; }
-        .dot-coach_bus { background: #d97706; }
         .dot-motorcycle, .dot-scooter { background: #eab308; }
         .dot-person, .dot-pedestrian { background: #10b981; }
         .dot-bicycle { background: #d946ef; }
@@ -311,7 +322,24 @@
             font-weight: 600;
         }
 
-        /* ── Kinematics Table & Panel ───────────── */
+        /* ── Analytics Data Cards & Bars ────────── */
+        .bar-container {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 100px;
+            overflow: hidden;
+            margin: 0.35rem 0 0.85rem;
+        }
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--cyan));
+            border-radius: 100px;
+        }
+        .bar-fill-danger {
+            background: linear-gradient(90deg, var(--warning), var(--danger));
+        }
+
+        /* ── Tables ─────────────────────────────── */
         .kinematics-section {
             background: var(--bg-card);
             border-radius: 16px;
@@ -337,11 +365,9 @@
             outline: none;
             width: 260px;
         }
-        .search-input:focus {
-            border-color: var(--accent);
-        }
+        .search-input:focus { border-color: var(--accent); }
         .table-responsive {
-            max-height: 480px;
+            max-height: 440px;
             overflow-y: auto;
         }
         table.kin-table {
@@ -423,7 +449,7 @@
         <div class="logo-icon">▲</div>
         <div>
             <div class="logo-text">AERIX</div>
-            <div class="logo-subtitle">Object Intelligence & Kinematics Engine</div>
+            <div class="logo-subtitle">Macroscopic & Spatial Traffic Intelligence</div>
         </div>
     </div>
     <div class="header-status">
@@ -441,7 +467,7 @@
         <!-- Left: Video Player -->
         <div class="video-panel">
             <div class="video-panel-header">
-                <h2>🛰️ Aerial Drone Tracking & Kinematics Feed</h2>
+                <h2>🛰️ Aerial Drone Tracking & Macro Analytics Stream</h2>
                 <span class="badge badge-idle" id="videoBadge">Idle</span>
             </div>
             <div class="video-container">
@@ -476,38 +502,37 @@
             </div>
         </div>
 
-        <!-- Right: Sidebar Overview -->
+        <!-- Right: Macroscopic Flow & Density Overview -->
         <div class="sidebar">
 
-            <!-- Stats -->
+            <!-- Macroscopic Flow Card -->
             <div class="card">
-                <div class="card-header">📊 Kinematics & Tracking Overview</div>
+                <div class="card-header">
+                    <span>📊 Macroscopic Flow & Density</span>
+                    <span class="badge badge-success" id="badgeLOS">LOS A</span>
+                </div>
                 <div class="card-body">
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <div class="stat-value stat-highlight" id="statAvgSpeed">—</div>
-                            <div class="stat-label">Avg Fleet Speed</div>
+                            <div class="stat-value stat-highlight" id="statDensity">—</div>
+                            <div class="stat-label">Density (veh/km)</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-value stat-highlight" id="statMaxSpeed">—</div>
-                            <div class="stat-label">Peak Speed</div>
+                            <div class="stat-value stat-highlight" id="statOccupancy">—</div>
+                            <div class="stat-label">Area Occupancy %</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-value" id="statTracks">—</div>
-                            <div class="stat-label">Unique Objects</div>
+                            <div class="stat-value stat-purple" id="statFlowRate">—</div>
+                            <div class="stat-label">Flow (veh/hour)</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-value" id="statMoving">—</div>
-                            <div class="stat-label">Active Cruising</div>
+                            <div class="stat-value stat-purple" id="statAvgSpeed">—</div>
+                            <div class="stat-label">Mean Speed (km/h)</div>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="statConfidence">—</div>
-                            <div class="stat-label">Avg Confidence</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="statFPS">—</div>
-                            <div class="stat-label">Throughput FPS</div>
-                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border);">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">MFD Congestion State</div>
+                        <div style="font-size: 0.85rem; font-weight: 600; color: #38bdf8; margin-top: 2px;" id="mfdState">Free-Flow Branch</div>
                     </div>
                 </div>
             </div>
@@ -523,19 +548,84 @@
                 </div>
             </div>
 
-            <!-- Tracker Config -->
-            <div class="card">
-                <div class="card-header">⚙️ System Physics Config</div>
-                <div class="card-body" id="trackerConfig">
-                    <div class="config-row"><span class="config-key">Detector</span><span class="config-val">YOLOv8 + Fine-Grained</span></div>
-                    <div class="config-row"><span class="config-key">Tracker</span><span class="config-val">ByteTrack Kalman Filter</span></div>
-                    <div class="config-row"><span class="config-key">Kinematics Scale</span><span class="config-val" id="cfgScale">15.0 px/meter</span></div>
-                    <div class="config-row"><span class="config-key">Speed Units</span><span class="config-val">km/h & m/s</span></div>
-                    <div class="config-row"><span class="config-key">Acceleration Units</span><span class="config-val">m/s²</span></div>
-                </div>
-            </div>
-
         </div>
+    </div>
+
+    <!-- Middle: 3-Column Macroscopic Spatial Intelligence Grid -->
+    <div class="macro-grid-3">
+
+        <!-- 1. Turning Movements & Directional Flow -->
+        <div class="card">
+            <div class="card-header">
+                <span>🔀 Intersection Turning Counts</span>
+                <span style="font-size:0.7rem; color:var(--cyan);" id="totalMovements">0 Trips</span>
+            </div>
+            <div class="card-body" id="turningMovementsBody">
+                <div style="color: var(--text-muted); font-size: 0.85rem;">No turning data yet</div>
+            </div>
+        </div>
+
+        <!-- 2. Queue Length & Delay Estimation -->
+        <div class="card">
+            <div class="card-header">
+                <span>🛑 Queue Length & Delays</span>
+                <span class="badge badge-idle" id="queueBadge">Free Flow</span>
+            </div>
+            <div class="card-body">
+                <div class="stats-grid" style="margin-bottom: 1rem;">
+                    <div class="stat-item">
+                        <div class="stat-value" style="color: #f87171;" id="statQueueLength">0.0 m</div>
+                        <div class="stat-label">Max Queue Length</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="statQueuedVehicles">0</div>
+                        <div class="stat-label">Vehicles in Queue</div>
+                    </div>
+                </div>
+                <div class="config-row"><span class="config-key">Avg Queue Delay</span><span class="config-val" id="statQueueDelay">0.0s</span></div>
+                <div class="config-row"><span class="config-key">Queue Threshold</span><span class="config-val">&le; 6.0 km/h</span></div>
+                <div class="config-row"><span class="config-key">Dwell Condition</span><span class="config-val">&ge; 1.5s standstill</span></div>
+            </div>
+        </div>
+
+        <!-- 3. Speed Profiles & Speeding Hotspots -->
+        <div class="card">
+            <div class="card-header">
+                <span>📈 Segment Speed Profiles & Hotspots</span>
+                <span style="font-size:0.7rem; color:var(--warning);" id="speedLimitTag">Limit: 50 km/h</span>
+            </div>
+            <div class="card-body" id="speedProfilesBody">
+                <div style="color: var(--text-muted); font-size: 0.85rem;">No segment speed data yet</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Middle 2: 2-Column Lane Modal Split & Origin-Destination Grid -->
+    <div class="macro-grid-2">
+
+        <!-- Lane Volume & Modal Split -->
+        <div class="card">
+            <div class="card-header">
+                <span>🛣️ Lane Volume & Modal Split by Lane</span>
+                <span style="font-size:0.7rem; color:var(--text-muted);" id="laneTotalVolume">Total: 0</span>
+            </div>
+            <div class="card-body" id="laneModalBody">
+                <div style="color: var(--text-muted); font-size: 0.85rem;">No lane volume data yet</div>
+            </div>
+        </div>
+
+        <!-- Origin-Destination Matrix -->
+        <div class="card">
+            <div class="card-header">
+                <span>🌐 Origin–Destination (O-D) Distributions</span>
+                <span style="font-size:0.7rem; color:var(--cyan);">Approach Routes</span>
+            </div>
+            <div class="card-body" id="odMatrixBody">
+                <div style="color: var(--text-muted); font-size: 0.85rem;">No O-D data yet</div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Bottom: Object-Level Kinematics Detail Table -->
@@ -599,10 +689,10 @@ async function loadResults() {
         if (data.status === 'completed') {
             displayResults(data);
             statusDot.style.background = 'var(--success)';
-            statusText.textContent = 'AERIX Active — Object Intelligence Ready';
+            statusText.textContent = 'AERIX Active — Macroscopic & Object Intelligence Ready';
         } else {
             statusDot.style.background = 'var(--warning)';
-            statusText.textContent = 'Ready — Upload video to run Object Intelligence';
+            statusText.textContent = 'Ready — Upload video to run Traffic Analytics';
         }
     } catch (e) {
         statusDot.style.background = 'var(--warning)';
@@ -611,20 +701,29 @@ async function loadResults() {
 }
 
 function displayResults(data) {
-    // Kinematics overview stats
     const kin = data.kinematics_summary || {};
-    document.getElementById('statAvgSpeed').textContent = (kin.average_speed_kmh || 0).toFixed(1) + ' km/h';
-    document.getElementById('statMaxSpeed').textContent = (kin.max_speed_kmh || 0).toFixed(1) + ' km/h';
-    document.getElementById('statTracks').textContent = (data.unique_tracks || 0).toLocaleString();
-    document.getElementById('statMoving').textContent = (kin.active_moving_count || 0).toLocaleString();
-    document.getElementById('statConfidence').textContent = ((data.average_confidence || 0) * 100).toFixed(1) + '%';
-    document.getElementById('statFPS').textContent = (data.effective_fps_processed || 0).toFixed(1);
+    const macro = data.macroscopic_analytics || {};
 
-    if (data.pixels_per_meter) {
-        document.getElementById('cfgScale').textContent = data.pixels_per_meter.toFixed(1) + ' px/m';
+    // 1. Macroscopic Density & Flow Card
+    const flow = macro.macroscopic_flow || {};
+    document.getElementById('statDensity').textContent = (flow.density_vehicles_per_km || 0).toFixed(1);
+    document.getElementById('statOccupancy').textContent = (flow.road_area_occupancy_pct || 0).toFixed(1) + '%';
+    document.getElementById('statFlowRate').textContent = (flow.hourly_flow_rate_veh_hour || 0).toFixed(0);
+    document.getElementById('statAvgSpeed').textContent = (flow.average_speed_kmh || kin.average_speed_kmh || 0).toFixed(1);
+
+    if (flow.level_of_service) {
+        const losShort = flow.level_of_service.split('—')[0].trim();
+        const losBadge = document.getElementById('badgeLOS');
+        losBadge.textContent = losShort;
+        if (losShort.includes('A') || losShort.includes('B')) losBadge.className = 'badge badge-success';
+        else if (losShort.includes('C') || losShort.includes('D')) losBadge.className = 'badge badge-warning';
+        else losBadge.className = 'badge badge-danger';
+    }
+    if (flow.mfd_congestion_state) {
+        document.getElementById('mfdState').textContent = flow.mfd_congestion_state;
     }
 
-    // Fine-Grained Class Breakdown
+    // 2. Fine-Grained Class Breakdown
     const fineCounts = data.fine_grained_class_counts || data.class_counts || {};
     const fineDiv = document.getElementById('fineClassDistribution');
     const totalTracks = Object.values(fineCounts).reduce((a, b) => a + b, 0);
@@ -643,7 +742,110 @@ function displayResults(data) {
             `).join('');
     }
 
-    // Populate Kinematics Table
+    // 3. Turning Movements Card
+    const turns = macro.turning_movements || {};
+    document.getElementById('totalMovements').textContent = (turns.total_movements_analyzed || 0) + ' Trips';
+    const turnCounts = turns.movement_counts || {};
+    const turnProps = turns.movement_proportions_pct || {};
+    const turningDiv = document.getElementById('turningMovementsBody');
+
+    if (Object.keys(turnCounts).length > 0) {
+        turningDiv.innerHTML = Object.entries(turnCounts).map(([mName, mCount]) => {
+            const pct = turnProps[mName] || 0;
+            return `
+                <div style="margin-bottom: 0.6rem;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
+                        <span style="font-weight:500;">${mName}</span>
+                        <span style="color:var(--cyan); font-weight:600;">${mCount} (${pct}%)</span>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: ${pct}%;"></div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // 4. Queue Lengths & Delays
+    const q = macro.queue_analytics || {};
+    document.getElementById('statQueueLength').textContent = (q.max_queue_length_meters || 0).toFixed(1) + ' m';
+    document.getElementById('statQueuedVehicles').textContent = q.total_queued_vehicles || 0;
+    document.getElementById('statQueueDelay').textContent = (q.average_delay_seconds || 0).toFixed(1) + 's';
+
+    const qBadge = document.getElementById('queueBadge');
+    if (q.queuing_status) {
+        qBadge.textContent = q.queuing_status.split('/')[0].trim();
+        if (q.queuing_status.includes('Severe')) qBadge.className = 'badge badge-danger';
+        else if (q.queuing_status.includes('Moderate') || q.queuing_status.includes('Light')) qBadge.className = 'badge badge-warning';
+        else qBadge.className = 'badge badge-success';
+    }
+
+    // 5. Segment Speed Profiles
+    const sp = macro.speed_profiles || {};
+    const profiles = sp.segment_profiles || [];
+    const spDiv = document.getElementById('speedProfilesBody');
+
+    if (profiles.length > 0) {
+        spDiv.innerHTML = profiles.map(p => `
+            <div style="margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600;">
+                    <span>${p.segment_name}</span>
+                    <span style="color:${p.speeding_percentage > 20 ? 'var(--danger)' : '#38bdf8'};">${p.mean_speed_kmh} km/h (P85: ${p.p85_speed_kmh})</span>
+                </div>
+                <div class="bar-container">
+                    <div class="bar-fill ${p.speeding_percentage > 20 ? 'bar-fill-danger' : ''}" style="width: ${Math.min(100, (p.p85_speed_kmh / 80) * 100)}%;"></div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // 6. Lane Volume & Modal Split
+    const laneData = macro.lane_analytics || {};
+    document.getElementById('laneTotalVolume').textContent = `Total: ${laneData.total_roadway_volume || 0} veh`;
+    const lanes = laneData.lanes || [];
+    const laneDiv = document.getElementById('laneModalBody');
+
+    if (lanes.length > 0) {
+        laneDiv.innerHTML = lanes.map(l => {
+            const modalStrs = Object.entries(l.modal_split_pct || {})
+                .map(([cls, pct]) => `${cls}: ${pct}%`)
+                .join(' • ');
+
+            return `
+                <div style="margin-bottom: 0.85rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600;">
+                        <span>${l.lane_name}</span>
+                        <span style="color:var(--cyan);">${l.volume} veh (${l.volume_share_pct}%) | Avg: ${l.average_speed_kmh} km/h</span>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: ${l.volume_share_pct}%;"></div>
+                    </div>
+                    <div style="font-size: 0.72rem; color: var(--text-muted);">Modal Split: ${modalStrs || 'None'}</div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // 7. Origin-Destination Corridors
+    const od = macro.origin_destination_matrix || {};
+    const corridors = od.major_corridors || [];
+    const odDiv = document.getElementById('odMatrixBody');
+
+    if (corridors.length > 0) {
+        odDiv.innerHTML = corridors.slice(0, 5).map(c => `
+            <div style="margin-bottom: 0.65rem;">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
+                    <span>${c.origin.replace(' Approach', '')} &rarr; ${c.destination.replace(' Approach', '')}</span>
+                    <span style="color:#a78bfa; font-weight:600;">${c.volume} trips (${c.proportion_pct}%)</span>
+                </div>
+                <div class="bar-container">
+                    <div class="bar-fill" style="background:linear-gradient(90deg, #8b5cf6, #ec4899); width: ${c.proportion_pct}%;"></div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // 8. Populate Kinematics Table
     currentTracks = data.tracks || [];
     renderKinematicsTable(currentTracks);
 
@@ -726,7 +928,7 @@ fileInput.addEventListener('change', async (e) => {
         const data = await resp.json();
         uploadedPath = data.path;
         processBtn.disabled = false;
-        statusText.textContent = `Uploaded: ${file.name} — Click Process to start kinematics analysis`;
+        statusText.textContent = `Uploaded: ${file.name} — Click Process to start macroscopic analysis`;
         statusDot.style.background = 'var(--warning)';
 
         videoPlayer.src = URL.createObjectURL(file);
@@ -747,9 +949,9 @@ async function startProcessing() {
     reprocessBtn.disabled = true;
     processingStatus.classList.remove('hidden');
     progressBar.style.width = '0%';
-    processingText.textContent = 'Starting kinematics pipeline...';
+    processingText.textContent = 'Starting macroscopic traffic pipeline...';
     statusDot.style.background = 'var(--accent)';
-    statusText.textContent = 'Processing object insights & velocity...';
+    statusText.textContent = 'Processing traffic flow, turning & queues...';
     videoBadge.textContent = 'Processing';
     videoBadge.className = 'badge badge-processing';
 
@@ -778,20 +980,16 @@ async function pollStatus() {
             processingText.textContent = `Analyzing Frame ${data.frames_processed || 0} of ${data.total_frames || '...'}`;
 
             if (data.kinematics) {
-                document.getElementById('statAvgSpeed').textContent = (data.kinematics.average_speed_kmh || 0).toFixed(1) + ' km/h';
-                document.getElementById('statMaxSpeed').textContent = (data.kinematics.max_speed_kmh || 0).toFixed(1) + ' km/h';
-            }
-            if (data.unique_tracks !== undefined) {
-                document.getElementById('statTracks').textContent = data.unique_tracks.toLocaleString();
+                document.getElementById('statAvgSpeed').textContent = (data.kinematics.average_speed_kmh || 0).toFixed(1);
             }
 
             setTimeout(pollStatus, 1500);
         } else if (data.status === 'completed') {
             progressBar.style.width = '100%';
             processingPct.textContent = '100%';
-            processingText.textContent = 'Analysis Complete!';
+            processingText.textContent = 'Macroscopic Analysis Complete!';
             statusDot.style.background = 'var(--success)';
-            statusText.textContent = 'AERIX Active — Object Intelligence Ready';
+            statusText.textContent = 'AERIX Active — Macroscopic & Object Intelligence Ready';
 
             setTimeout(async () => {
                 processingStatus.classList.add('hidden');

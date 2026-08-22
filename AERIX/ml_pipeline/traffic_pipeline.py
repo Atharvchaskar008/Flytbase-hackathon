@@ -28,6 +28,7 @@ from ml_pipeline.ingestion.frame_sampler import FrameSampler
 from ml_pipeline.detection.yolo_detector import YOLODetector
 from ml_pipeline.tracking.bytetrack import ByteTrackTracker
 from ml_pipeline.tracking.track_manager import TrackManager
+from ml_pipeline.analytics.aggregate_analytics import MacroTrafficAnalyticsEngine
 
 # ── Logging ──────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -252,6 +253,16 @@ def process_traffic_video(
     ]
     avg_conf = round(float(np.mean(all_confs)), 4) if all_confs else 0.0
 
+    # Calculate macroscopic and aggregate traffic metrics
+    analytics_engine = MacroTrafficAnalyticsEngine(pixels_per_meter=pixels_per_meter)
+    macroscopic_analytics = analytics_engine.generate_comprehensive_analytics(
+        tracks=all_summaries,
+        frames_processed=frames_processed,
+        fps=loader.fps,
+        sample_rate=sample_rate,
+        frame_shape=(loader.height, loader.width),
+    )
+
     result = {
         "video_id": Path(video_path).stem,
         "status": "completed",
@@ -263,6 +274,7 @@ def process_traffic_video(
         "class_counts": class_counts,
         "fine_grained_class_counts": fine_counts,
         "kinematics_summary": kinematics_summary,
+        "macroscopic_analytics": macroscopic_analytics,
         "pixels_per_meter": pixels_per_meter,
         "average_confidence": avg_conf,
         "output_video": output_path,
@@ -285,6 +297,8 @@ def process_traffic_video(
     logger.info("  Fine-Grained     : %s", fine_counts)
     logger.info("  Avg Fleet Speed  : %.1f km/h | Max Speed: %.1f km/h",
                 kinematics_summary["average_speed_kmh"], kinematics_summary["max_speed_kmh"])
+    logger.info("  Level of Service : %s", macroscopic_analytics.get("macroscopic_flow", {}).get("level_of_service", "N/A"))
+    logger.info("  Queue Status     : %s", macroscopic_analytics.get("queue_analytics", {}).get("queuing_status", "N/A"))
     logger.info("  Processing time  : %.1fs", elapsed)
     logger.info("  Output video     : %s", output_path)
     logger.info("=" * 60)
