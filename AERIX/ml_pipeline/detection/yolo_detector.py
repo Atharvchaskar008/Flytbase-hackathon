@@ -191,9 +191,18 @@ class YOLODetector:
             return self._detect_traffic_mock(frame, frame_number)
     
     def _detect_traffic_real(self, frame: np.ndarray, frame_number: int = None) -> List[Dict[str, Any]]:
-        """Run real YOLO inference, filtered to traffic-relevant COCO classes."""
+        """Run real YOLO inference, filtered to traffic-relevant COCO classes with enhanced sensitivity for two-wheelers."""
         detections = []
-        results = self.model(frame, verbose=False)
+        
+        # Use imgsz=1280 to resolve small aerial objects like motorcycles & cyclists
+        # Use low base confidence (0.15) to let the detector capture small two-wheelers
+        try:
+            results = self.model(frame, verbose=False, imgsz=1280, conf=0.15)
+        except Exception:
+            results = self.model(frame, verbose=False, conf=0.15)
+        
+        # Adaptive thresholds: motorcycles and bicycles are small from drone altitudes
+        TWO_WHEELER_CLASSES = {1, 3}  # bicycle, motorcycle
         
         for result in results:
             boxes = result.boxes
@@ -205,8 +214,10 @@ class YOLODetector:
                 # Skip non-traffic classes
                 if class_id not in self.TRAFFIC_COCO_IDS:
                     continue
-                # Skip low confidence
-                if confidence < self.confidence_threshold:
+                
+                # Apply adaptive threshold: lower threshold (0.18) for motorcycles/bicycles, standard for cars/trucks
+                min_thresh = min(0.18, self.confidence_threshold) if class_id in TWO_WHEELER_CLASSES else self.confidence_threshold
+                if confidence < min_thresh:
                     continue
                 
                 class_label = self.COCO_ID_TO_TRAFFIC[class_id]

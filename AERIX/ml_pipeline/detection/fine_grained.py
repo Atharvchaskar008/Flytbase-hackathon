@@ -63,8 +63,11 @@ class FineGrainedClassifier:
                 fine_class = "lgv"
 
         elif cls_lower == "car":
+            # Tiny bounding box in drone view is typically a two-wheeler / motorcycle
+            if area < 2600 and (w < 55 or h < 55):
+                fine_class = "scooter" if aspect_ratio < 1.1 else "motorcycle"
             # Subdivide into Sedan, SUV, Hatchback, Van
-            if aspect_ratio > 1.9 or aspect_ratio < 0.52:
+            elif aspect_ratio > 1.9 or aspect_ratio < 0.52:
                 # Long profile typical of sedans or station wagons
                 fine_class = "sedan"
             elif area > 9000 or (w > 115 and h > 75):
