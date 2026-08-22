@@ -75,6 +75,7 @@ def process_traffic_video(
     trail_length: int = 30,
     pixels_per_meter: float = 15.0,
     progress_callback: Optional[Any] = None,
+    frame_callback: Optional[Any] = None,
 ) -> Dict[str, Any]:
     """Process a traffic video through the AERIX pipeline with fine-grained classification & kinematics.
 
@@ -90,6 +91,7 @@ def process_traffic_video(
         trail_length: Number of recent points for trajectory trail
         pixels_per_meter: Pixel to real-world meter conversion scale
         progress_callback: Optional callback for streaming progress updates
+        frame_callback: Optional callback receiving each annotated frame (numpy array)
 
     Returns:
         Summary dict with processing statistics, kinematics, and fine-grained classification
@@ -197,6 +199,13 @@ def process_traffic_video(
             )
             writer.write(annotated)
 
+            # ── Send annotated frame for live streaming ───────────────
+            if frame_callback:
+                try:
+                    frame_callback(annotated)
+                except Exception:
+                    pass
+
             # ── Progress logging & callback ──────────────────────────
             if frames_processed % 30 == 0 or frames_processed == 1:
                 pct = round((frame_number / max(1, loader.total_frames)) * 100, 1)
@@ -204,6 +213,21 @@ def process_traffic_video(
                 class_counts = track_manager.get_class_counts()
                 fine_counts = track_manager.get_fine_grained_class_counts()
                 kin_summary = track_manager.get_kinematics_summary()
+
+                # Compute live macroscopic analytics every 30 frames
+                live_macro = {}
+                if len(all_sums) > 0:
+                    try:
+                        live_engine = MacroTrafficAnalyticsEngine(pixels_per_meter=pixels_per_meter)
+                        live_macro = live_engine.generate_comprehensive_analytics(
+                            tracks=all_sums,
+                            frames_processed=frames_processed,
+                            fps=loader.fps,
+                            sample_rate=sample_rate,
+                            frame_shape=(loader.height, loader.width),
+                        )
+                    except Exception:
+                        live_macro = {}
 
                 if progress_callback:
                     try:
@@ -216,8 +240,10 @@ def process_traffic_video(
                             "unique_tracks": len(all_sums),
                             "class_counts": class_counts,
                             "fine_grained_class_counts": fine_counts,
-                            "kinematics": kin_summary,
+                            "kinematics_summary": kin_summary,
+                            "macroscopic_analytics": live_macro,
                             "active_tracks": len(tracker.active_tracks),
+                            "tracks": all_sums,
                         })
                     except Exception:
                         pass

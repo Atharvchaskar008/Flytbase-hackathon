@@ -1,11 +1,12 @@
 """
 AERIX Demo Server — Lightweight standalone server for Level 1 demo.
-Serves the frontend HTML, the processed video, and results JSON.
+Serves the frontend HTML, the processed video, results JSON,
+and live annotated frame stream during processing.
 No database required. No React build required.
 
 Usage:
     python demo_server.py
-    Open http://localhost:8080
+    Open http://localhost:8888
 """
 
 import json
@@ -34,6 +35,27 @@ processing_state = {
     "result": None,
 }
 
+# Live frame buffer — thread-safe JPEG bytes of latest annotated frame
+_frame_lock = threading.Lock()
+_latest_frame_jpeg = None  # bytes
+
+
+def _store_live_frame(frame_bgr):
+    """Called by the pipeline for every annotated frame. Encodes to JPEG and stores."""
+    global _latest_frame_jpeg
+    try:
+        import cv2
+        # Resize for faster streaming (720p max)
+        h, w = frame_bgr.shape[:2]
+        if w > 1280:
+            scale = 1280 / w
+            frame_bgr = cv2.resize(frame_bgr, (1280, int(h * scale)))
+        _, buf = cv2.imencode('.jpg', frame_bgr, [cv2.IMWRITE_JPEG_QUALITY, 70])
+        with _frame_lock:
+            _latest_frame_jpeg = buf.tobytes()
+    except Exception:
+        pass
+
 
 class AERIXHandler(SimpleHTTPRequestHandler):
     """Custom handler for the AERIX demo."""
@@ -48,6 +70,10 @@ class AERIXHandler(SimpleHTTPRequestHandler):
             self._serve_json_results()
         elif path == "/api/status":
             self._serve_json(processing_state)
+        elif path == "/api/frame":
+            self._serve_live_frame()
+        elif path == "/api/stream":
+            self._serve_mjpeg_stream()
         elif path.startswith("/videos/"):
             video_name = path[len("/videos/"):]
             video_path = VIDEOS_DIR / video_name
@@ -100,6 +126,51 @@ class AERIXHandler(SimpleHTTPRequestHandler):
         else:
             self._serve_json({"status": "no_results", "message": "No processing results yet."})
 
+    def _serve_live_frame(self):
+        """Serve the latest annotated frame as JPEG."""
+        with _frame_lock:
+            frame_data = _latest_frame_jpeg
+
+        if frame_data:
+            self.send_response(200)
+            self.send_header("Content-Type", "image/jpeg")
+            self.send_header("Content-Length", str(len(frame_data)))
+            self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(frame_data)
+        else:
+            # Return a 1x1 transparent pixel if no frame yet
+            self.send_response(204)
+            self.end_headers()
+
+    def _serve_mjpeg_stream(self):
+        """Serve continuous MJPEG stream of annotated frames."""
+        self.send_response(200)
+        self.send_header("Content-Type", "multipart/x-mixed-replace; boundary=frame")
+        self.send_header("Cache-Control", "no-cache")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+
+        prev_frame = None
+        try:
+            while processing_state.get("status") == "processing":
+                with _frame_lock:
+                    frame_data = _latest_frame_jpeg
+
+                if frame_data and frame_data is not prev_frame:
+                    self.wfile.write(b"--frame\r\n")
+                    self.wfile.write(b"Content-Type: image/jpeg\r\n")
+                    self.wfile.write(f"Content-Length: {len(frame_data)}\r\n".encode())
+                    self.wfile.write(b"\r\n")
+                    self.wfile.write(frame_data)
+                    self.wfile.write(b"\r\n")
+                    prev_frame = frame_data
+
+                time.sleep(0.1)  # ~10 fps stream
+        except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+            pass
+
     def _handle_upload(self):
         content_length = int(self.headers.get("Content-Length", 0))
         if content_length == 0:
@@ -144,6 +215,8 @@ class AERIXHandler(SimpleHTTPRequestHandler):
         self.send_error(400, "No file found in upload")
 
     def _handle_process(self):
+        global _latest_frame_jpeg
+
         content_length = int(self.headers.get("Content-Length", 0))
         body = self.rfile.read(content_length) if content_length > 0 else b"{}"
 
@@ -166,6 +239,10 @@ class AERIXHandler(SimpleHTTPRequestHandler):
         processing_state["status"] = "processing"
         processing_state["progress"] = 0
 
+        # Clear previous frame
+        with _frame_lock:
+            _latest_frame_jpeg = None
+
         def on_progress(data):
             processing_state.update(data)
 
@@ -180,6 +257,7 @@ class AERIXHandler(SimpleHTTPRequestHandler):
                     model="yolov8n.pt",
                     use_real_yolo=True,
                     progress_callback=on_progress,
+                    frame_callback=_store_live_frame,
                 )
                 # Save results
                 with open(RESULTS_FILE, "w") as f:
@@ -213,6 +291,7 @@ def main():
     print(f"  Open: http://localhost:{port}")
     print(f"  Video: {VIDEOS_DIR / 'level1_output.mp4'}")
     print(f"  Results: {RESULTS_FILE}")
+    print(f"  Live Stream: http://localhost:{port}/api/stream")
     print("=" * 60)
     try:
         server.serve_forever()

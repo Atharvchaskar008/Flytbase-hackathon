@@ -472,6 +472,7 @@
             </div>
             <div class="video-container">
                 <video id="videoPlayer" controls autoplay loop muted playsinline></video>
+                <img id="liveStreamImg" class="hidden" alt="Live Tracking Stream" style="width:100%; height:100%; object-fit:contain; background:#000;">
                 <div class="video-placeholder" id="videoPlaceholder">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -678,8 +679,10 @@ const statusDot = document.getElementById('statusDot');
 const statusText = document.getElementById('statusText');
 const trackSearch = document.getElementById('trackSearch');
 
+const liveStreamImg = document.getElementById('liveStreamImg');
 let currentTracks = [];
 let uploadedPath = '';
+let frameStreamTimer = null;
 
 // ── Load results ─────────────────────────────────
 async function loadResults() {
@@ -849,13 +852,20 @@ function displayResults(data) {
     currentTracks = data.tracks || [];
     renderKinematicsTable(currentTracks);
 
-    // Video
-    const videoUrl = data.output_video_url || '/videos/level1_output.mp4';
-    videoPlayer.src = videoUrl;
-    videoPlaceholder.classList.add('hidden');
-    videoBadge.textContent = 'Processed';
-    videoBadge.className = 'badge badge-success';
-    reprocessBtn.disabled = false;
+    // Video — only update when final result has video URL
+    if (data.output_video_url) {
+        if (frameStreamTimer) {
+            clearInterval(frameStreamTimer);
+            frameStreamTimer = null;
+        }
+        liveStreamImg.classList.add('hidden');
+        videoPlayer.classList.remove('hidden');
+        videoPlayer.src = data.output_video_url;
+        videoPlaceholder.classList.add('hidden');
+        videoBadge.textContent = 'Processed';
+        videoBadge.className = 'badge badge-success';
+        reprocessBtn.disabled = false;
+    }
 }
 
 function renderKinematicsTable(tracks) {
@@ -949,11 +959,23 @@ async function startProcessing() {
     reprocessBtn.disabled = true;
     processingStatus.classList.remove('hidden');
     progressBar.style.width = '0%';
-    processingText.textContent = 'Starting macroscopic traffic pipeline...';
+    processingText.textContent = 'Starting real-time tracking stream...';
     statusDot.style.background = 'var(--accent)';
-    statusText.textContent = 'Processing traffic flow, turning & queues...';
-    videoBadge.textContent = 'Processing';
+    statusText.textContent = 'Tracking vehicles & computing kinematics live...';
+    videoBadge.textContent = 'Tracking Live';
     videoBadge.className = 'badge badge-processing';
+
+    // Switch video container to live stream mode
+    videoPlayer.classList.add('hidden');
+    videoPlaceholder.classList.add('hidden');
+    liveStreamImg.classList.remove('hidden');
+    liveStreamImg.src = '/api/frame?t=' + Date.now();
+
+    // Start live frame refresh timer
+    if (frameStreamTimer) clearInterval(frameStreamTimer);
+    frameStreamTimer = setInterval(() => {
+        liveStreamImg.src = '/api/frame?t=' + Date.now();
+    }, 150);
 
     try {
         await fetch('/api/process', {
@@ -977,19 +999,27 @@ async function pollStatus() {
             const pct = Math.min(99, (data.progress || 0));
             progressBar.style.width = pct + '%';
             processingPct.textContent = pct.toFixed(1) + '%';
-            processingText.textContent = `Analyzing Frame ${data.frames_processed || 0} of ${data.total_frames || '...'}`;
+            processingText.textContent = `Analyzing Frame ${data.frames_processed || 0} of ${data.total_frames || '...'} | ${data.unique_tracks || 0} tracks | ${data.detections || 0} detections`;
 
-            if (data.kinematics) {
-                document.getElementById('statAvgSpeed').textContent = (data.kinematics.average_speed_kmh || 0).toFixed(1);
+            // Live-update ALL dashboard cards with real data from backend
+            if (data.macroscopic_analytics || data.kinematics_summary || data.tracks) {
+                displayResults(data);
+                videoBadge.textContent = `Tracking ${pct.toFixed(0)}%`;
+                videoBadge.className = 'badge badge-processing';
             }
 
-            setTimeout(pollStatus, 1500);
+            setTimeout(pollStatus, 1000);
         } else if (data.status === 'completed') {
             progressBar.style.width = '100%';
             processingPct.textContent = '100%';
-            processingText.textContent = 'Macroscopic Analysis Complete!';
+            processingText.textContent = 'Tracking & Analytics Complete!';
             statusDot.style.background = 'var(--success)';
             statusText.textContent = 'AERIX Active — Macroscopic & Object Intelligence Ready';
+
+            if (frameStreamTimer) {
+                clearInterval(frameStreamTimer);
+                frameStreamTimer = null;
+            }
 
             setTimeout(async () => {
                 processingStatus.classList.add('hidden');
@@ -999,11 +1029,15 @@ async function pollStatus() {
             processingText.textContent = 'Error: ' + (data.result?.error || 'Unknown');
             statusDot.style.background = 'var(--danger)';
             processBtn.disabled = false;
+            if (frameStreamTimer) {
+                clearInterval(frameStreamTimer);
+                frameStreamTimer = null;
+            }
         } else {
-            setTimeout(pollStatus, 2000);
+            setTimeout(pollStatus, 1500);
         }
     } catch (e) {
-        setTimeout(pollStatus, 3000);
+        setTimeout(pollStatus, 2000);
     }
 }
 
