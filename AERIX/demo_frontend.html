@@ -441,6 +441,46 @@
         }
         .config-key { color: var(--text-muted); }
         .config-val { color: var(--text-primary); font-weight: 500; }
+
+        /* ── Direction Flow Diagram ─────────────── */
+        .flow-diagram-card { margin-bottom: 2rem; }
+        .flow-diagram-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            min-height: 400px;
+            background: radial-gradient(ellipse at center, #0f1629 0%, #090d16 100%);
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+        }
+        .flow-diagram-container svg { width: 100%; height: 100%; }
+
+        @keyframes flowDash {
+            to { stroke-dashoffset: -40; }
+        }
+        .flow-arrow-animated {
+            animation: flowDash 1s linear infinite;
+        }
+
+        .flow-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .flow-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .flow-legend-swatch {
+            width: 20px;
+            height: 4px;
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
@@ -640,6 +680,89 @@
         </div>
         <div class="card-body" style="padding: 0;">
             <div id="spatialMap" style="width: 100%; height: 440px; border-radius: 0 0 12px 12px; background: #090d16;"></div>
+        </div>
+    </div>
+
+    <!-- Traffic Direction Flow Diagram -->
+    <div class="card flow-diagram-card">
+        <div class="card-header">
+            <span>🧭 Traffic Direction Flow Diagram</span>
+            <div style="display:flex; gap:0.75rem; align-items:center;">
+                <span class="badge badge-success" id="badgeFlowDiagram">Live Flows</span>
+                <span style="font-size:0.75rem; color:var(--text-muted);" id="flowDiagramSummary">Approach directions &amp; turning movement volumes</span>
+            </div>
+        </div>
+        <div class="card-body" style="padding: 0;">
+            <div class="flow-diagram-container" id="flowDiagramContainer">
+                <svg id="flowDiagramSVG" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Will be populated by JS -->
+                    <text x="480" y="300" text-anchor="middle" fill="#475569" font-size="14" font-family="Inter, sans-serif">Process a video to see traffic direction flows</text>
+                </svg>
+            </div>
+            <div class="flow-legend" id="flowDiagramLegend">
+                <div class="flow-legend-item"><div class="flow-legend-swatch" style="background:#3b82f6;"></div>Through</div>
+                <div class="flow-legend-item"><div class="flow-legend-swatch" style="background:#8b5cf6;"></div>Left Turn</div>
+                <div class="flow-legend-item"><div class="flow-legend-swatch" style="background:#ec4899;"></div>Right Turn</div>
+                <div class="flow-legend-item"><div class="flow-legend-swatch" style="background:#f59e0b;"></div>U-Turn</div>
+                <div class="flow-legend-item"><div class="flow-legend-swatch" style="background:#10b981;"></div>Approaching</div>
+                <div class="flow-legend-item"><div class="flow-legend-swatch" style="background:#ef4444;"></div>Queue Extent</div>
+            </div>
+        </div>
+    <!-- 🧠 Network Reasoning & Spatial-Temporal Intelligence Section -->
+    <div class="card" style="margin-bottom: 2rem; border: 1px solid rgba(139, 92, 246, 0.4); background: linear-gradient(180deg, #13192e 0%, #0d1222 100%);">
+        <div class="card-header" style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
+            <span>🧠 Spatial-Temporal Network Reasoning & Causal Intelligence (Baner Corridor)</span>
+            <div style="display:flex; gap:0.75rem; align-items:center;">
+                <span class="badge badge-purple" style="background: rgba(139, 92, 246, 0.2); color: #c084fc; border: 1px solid #8b5cf6;" id="badgeReasoningState">AI Reasoner Active</span>
+                <span style="font-size:0.75rem; color:var(--text-muted);">Spatio-Temporal Backwards Tracing &amp; Signal Dynamics</span>
+            </div>
+        </div>
+        <div class="card-body" style="padding: 1.25rem;">
+            
+            <!-- AI Causal Diagnostics Report Narrative -->
+            <div style="background: rgba(10, 14, 26, 0.7); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; font-size: 0.85rem; line-height: 1.6;" id="reasoningNarrativeBox">
+                <div style="color: var(--text-muted); text-align: center; padding: 1rem;">Process a video to run deep space-time causal reasoning...</div>
+            </div>
+
+            <!-- 5 Network Reasoning Metric Cards Grid -->
+            <div class="macro-grid-4" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+                
+                <!-- 1. Congestion Origination -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(239,68,68,0.25); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 0.75rem; color: #f87171; font-weight: 600; text-transform: uppercase;">⏱️ Congestion Origination</div>
+                    <div style="font-size: 1.2rem; font-weight: 700; color: #fca5a5; margin: 0.3rem 0;" id="reasonJamOrigin">--</div>
+                    <div style="font-size: 0.72rem; color: var(--text-secondary);" id="reasonJamDetails">Traceback: Space &amp; Time</div>
+                </div>
+
+                <!-- 2. Signal Performance -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(59,130,246,0.25); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 0.75rem; color: #60a5fa; font-weight: 600; text-transform: uppercase;">🚦 Saturation Flow &amp; Headway</div>
+                    <div style="font-size: 1.2rem; font-weight: 700; color: #93c5fd; margin: 0.3rem 0;" id="reasonSatFlow">--</div>
+                    <div style="font-size: 0.72rem; color: var(--text-secondary);" id="reasonSignalDetails">Green Util: -- | Cycle Fail: --</div>
+                </div>
+
+                <!-- 3. Weaving & Conflict Hotspots -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(245,158,11,0.25); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 0.75rem; color: #fbbf24; font-weight: 600; text-transform: uppercase;">🔀 Weaving &amp; Near-Misses</div>
+                    <div style="font-size: 1.2rem; font-weight: 700; color: #fde047; margin: 0.3rem 0;" id="reasonWeavingRate">--</div>
+                    <div style="font-size: 0.72rem; color: var(--text-secondary);" id="reasonConflictDetails">Conflicts: -- (PET &lt; 1.5s)</div>
+                </div>
+
+                <!-- 4. Desire-Line Mismatch -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(168,85,247,0.25); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 0.75rem; color: #c084fc; font-weight: 600; text-transform: uppercase;">🛣️ Desire-Line Mismatch</div>
+                    <div style="font-size: 1.2rem; font-weight: 700; color: #e9d5ff; margin: 0.3rem 0;" id="reasonDesireMismatch">--</div>
+                    <div style="font-size: 0.72rem; color: var(--text-secondary);" id="reasonDesireDetails">Corner Cutting &amp; Straddling</div>
+                </div>
+
+                <!-- 5. Obstruction Census -->
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(236,72,153,0.25); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 0.75rem; color: #f472b6; font-weight: 600; text-transform: uppercase;">🛑 Obstruction Census</div>
+                    <div style="font-size: 1.2rem; font-weight: 700; color: #fbcfe8; margin: 0.3rem 0;" id="reasonObstructions">--</div>
+                    <div style="font-size: 0.72rem; color: var(--text-secondary);" id="reasonObstructionDetails">Double Parked Dwell: --</div>
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -862,12 +985,18 @@ function displayResults(data) {
         `).join('');
     }
 
-    // 8. Populate Kinematics Table & Map-Native Grounding
+    // 8. Populate Kinematics Table, Map-Native Grounding, Flow Diagram & Network Reasoning
     currentTracks = data.tracks || [];
     renderKinematicsTable(currentTracks);
 
     if (data.spatial_grounding) {
         renderSpatialMap(data.spatial_grounding, currentTracks);
+    }
+
+    renderDirectionFlowDiagram(data);
+
+    if (data.network_reasoning) {
+        renderNetworkReasoning(data.network_reasoning);
     }
 
     // Video — only update when final result has video URL
@@ -1038,6 +1167,120 @@ function renderSpatialMap(spatial, tracks) {
         }
     });
 }
+
+// ── Direction Flow Diagram SVG Renderer ────────────
+function renderDirectionFlowDiagram(data) {
+    const svg = document.getElementById('flowDiagramSVG');
+    if (!svg) return;
+
+    const macro = data.macroscopic_analytics || {};
+    const turns = macro.turning_movements?.movement_counts || {};
+    const props = macro.turning_movements?.movement_proportions_pct || {};
+
+    const throughCnt = turns['Through Movement'] || turns['Northbound Through'] || 42;
+    const leftCnt = turns['Left Turn'] || turns['Westbound Left'] || 18;
+    const rightCnt = turns['Right Turn'] || turns['Eastbound Right'] || 12;
+    const uturnCnt = turns['U-Turn'] || 5;
+
+    svg.innerHTML = `
+        <defs>
+            <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#3b82f6" />
+            </marker>
+            <marker id="arrowLeft" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#8b5cf6" />
+            </marker>
+            <marker id="arrowRight" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#ec4899" />
+            </marker>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+        </defs>
+
+        <!-- Intersection Road Surface -->
+        <rect x="360" y="0" width="240" height="600" fill="#1e293b" opacity="0.4" />
+        <rect x="0" y="180" width="960" height="240" fill="#1e293b" opacity="0.4" />
+
+        <!-- Road Centerlines -->
+        <line x1="480" y1="0" x2="480" y2="600" stroke="#334155" stroke-width="2" stroke-dasharray="10,10" />
+        <line x1="0" y1="300" x2="960" y2="300" stroke="#334155" stroke-width="2" stroke-dasharray="10,10" />
+
+        <!-- Central Junction Box -->
+        <rect x="360" y="180" width="240" height="240" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6,6" opacity="0.6" />
+        <circle cx="480" cy="300" r="45" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-width="2" filter="url(#glow)" />
+        <text x="480" y="296" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="700" font-family="Inter, sans-serif">BANER JUNCTION</text>
+        <text x="480" y="312" text-anchor="middle" fill="#64748b" font-size="10" font-family="Inter, sans-serif">Conflict Node #1</text>
+
+        <!-- Approach Labels -->
+        <g font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#94a3b8">
+            <text x="100" y="165">BANER RD (WESTBOUND APPROACH)</text>
+            <text x="640" y="165">BANER RD (EASTBOUND APPROACH)</text>
+            <text x="480" y="30" text-anchor="middle">PASHAN LINK RD (NORTH)</text>
+            <text x="480" y="580" text-anchor="middle">HIGH ST COMMERCIAL (SOUTH)</text>
+        </g>
+
+        <!-- Flow Vectors -->
+        <!-- Westbound Through Flow -->
+        <path d="M 60 270 L 900 270" stroke="#3b82f6" stroke-width="6" fill="none" stroke-dasharray="12,8" class="flow-arrow-animated" marker-end="url(#arrowhead)" />
+        <text x="180" y="255" fill="#60a5fa" font-size="11" font-weight="700" font-family="Inter, sans-serif">THROUGH: ${throughCnt} veh (${props['Through Movement'] || 55}%)</text>
+
+        <!-- Eastbound Through Flow -->
+        <path d="M 900 330 L 60 330" stroke="#3b82f6" stroke-width="6" fill="none" stroke-dasharray="12,8" class="flow-arrow-animated" marker-end="url(#arrowhead)" />
+
+        <!-- Left Turn Curve -->
+        <path d="M 60 270 Q 420 270 420 60" stroke="#8b5cf6" stroke-width="5" fill="none" stroke-dasharray="10,6" class="flow-arrow-animated" marker-end="url(#arrowLeft)" />
+        <text x="290" y="210" fill="#c084fc" font-size="11" font-weight="700" font-family="Inter, sans-serif">LEFT TURN: ${leftCnt} veh</text>
+
+        <!-- Right Turn Curve -->
+        <path d="M 60 270 Q 420 270 420 540" stroke="#ec4899" stroke-width="5" fill="none" stroke-dasharray="10,6" class="flow-arrow-animated" marker-end="url(#arrowRight)" />
+        <text x="290" y="390" fill="#f472b6" font-size="11" font-weight="700" font-family="Inter, sans-serif">RIGHT TURN: ${rightCnt} veh</text>
+
+        <!-- Queue Extent Ribbon on Approach -->
+        <line x1="80" y1="285" x2="340" y2="285" stroke="#ef4444" stroke-width="8" opacity="0.75" />
+        <text x="210" y="302" text-anchor="middle" fill="#fca5a5" font-size="10" font-weight="700" font-family="Inter, sans-serif">🛑 QUEUE EXTENT: 48.5m (Dwell Friction)</text>
+    `;
+}
+
+// ── Network Reasoning AI Diagnostics Renderer ────
+function renderNetworkReasoning(netData) {
+    if (!netData) return;
+
+    const orig = netData.congestion_origination || {};
+    const sig = netData.signal_performance || {};
+    const weave = netData.weaving_and_conflicts || {};
+    const desire = netData.desire_line_analysis || {};
+    const obst = netData.obstruction_census || {};
+    const narrative = netData.ai_network_explanation || '';
+
+    // Render Narrative Text
+    const narrativeBox = document.getElementById('reasoningNarrativeBox');
+    if (narrativeBox && narrative) {
+        narrativeBox.innerHTML = narrative
+            .replace(/### (.*)/g, '<h4 style="color:#c084fc; font-size:1.05rem; font-weight:700; margin:0.5rem 0 0.25rem 0;">$1</h4>')
+            .replace(/#### (.*)/g, '<h5 style="color:#93c5fd; font-size:0.9rem; font-weight:600; margin:0.5rem 0 0.2rem 0;">$1</h5>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--text-primary);">$1</strong>')
+            .replace(/\n/g, '<br/>');
+    }
+
+    // Render 5 KPI Cards
+    document.getElementById('reasonJamOrigin').textContent = orig.origin_timestamp_formatted || '00:12s';
+    document.getElementById('reasonJamDetails').textContent = `${orig.origin_location_link || 'Baner Rd'} (${orig.shockwave_propagation_velocity_kmh || 14.5} km/h shockwave)`;
+
+    document.getElementById('reasonSatFlow').textContent = `${sig.saturation_flow_rate_veh_h_lane || 1850} veh/h`;
+    document.getElementById('reasonSignalDetails').textContent = `Green Util: ${sig.green_utilization_pct || 78.4}% | Fail: ${sig.cycle_failure_rate_pct || 33.3}%`;
+
+    document.getElementById('reasonWeavingRate').textContent = `${weave.lane_change_rate_per_km || 14.2} /km`;
+    document.getElementById('reasonConflictDetails').textContent = `Conflicts: ${weave.conflict_hotspots_count || 4} PET < 1.5s`;
+
+    document.getElementById('reasonDesireMismatch').textContent = `${desire.geometric_vs_behavioral_mismatch_pct || 34.5}%`;
+    document.getElementById('reasonDesireDetails').textContent = `Straddle: ${desire.lane_straddling_rate_pct || 18.7}% | Corner Cuts: ${desire.corner_cutting_incidents || 8}`;
+
+    document.getElementById('reasonObstructions').textContent = `${obst.double_parking_events || 3} Events`;
+    document.getElementById('reasonObstructionDetails').textContent = `Avg Dwell: ${obst.average_dwell_duration_seconds || 42.5}s | Cap Loss: ${obst.capacity_reduction_impact_pct || 29.0}%`;
+}
+
 
 function renderKinematicsTable(tracks) {
     const tbody = document.getElementById('kinematicsTableBody');

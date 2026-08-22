@@ -29,6 +29,7 @@ from ml_pipeline.detection.yolo_detector import YOLODetector
 from ml_pipeline.tracking.bytetrack import ByteTrackTracker
 from ml_pipeline.tracking.track_manager import TrackManager
 from ml_pipeline.analytics.aggregate_analytics import MacroTrafficAnalyticsEngine
+from ml_pipeline.analytics.network_reasoning import NetworkReasoningEngine
 from ml_pipeline.spatial.spatial_grounding_engine import SpatialGroundingEngine
 
 # ── Logging ──────────────────────────────────────────────────────────
@@ -259,6 +260,18 @@ def process_traffic_video(
                     except Exception:
                         live_spatial = {}
 
+                live_reasoning = {}
+                if len(all_sums) > 0:
+                    try:
+                        reasoning_eng = NetworkReasoningEngine(fps=loader.fps, pixels_per_meter=pixels_per_meter)
+                        live_reasoning = reasoning_eng.compute_network_reasoning(
+                            tracks=all_sums,
+                            macroscopic_analytics=live_macro,
+                            spatial_grounding=live_spatial,
+                        )
+                    except Exception:
+                        live_reasoning = {}
+
                 if progress_callback:
                     try:
                         progress_callback({
@@ -273,6 +286,7 @@ def process_traffic_video(
                             "kinematics_summary": kin_summary,
                             "macroscopic_analytics": live_macro,
                             "spatial_grounding": live_spatial,
+                            "network_reasoning": live_reasoning,
                             "active_tracks": len(tracker.active_tracks),
                             "tracks": all_sums,
                         })
@@ -328,6 +342,14 @@ def process_traffic_video(
         fps=loader.fps,
     )
 
+    # Calculate Network Reasoning & Spatial-Temporal Intelligence
+    reasoning_engine = NetworkReasoningEngine(fps=loader.fps, pixels_per_meter=pixels_per_meter)
+    network_reasoning = reasoning_engine.compute_network_reasoning(
+        tracks=all_summaries,
+        macroscopic_analytics=macroscopic_analytics,
+        spatial_grounding=spatial_grounding,
+    )
+
     result = {
         "video_id": Path(video_path).stem,
         "status": "completed",
@@ -341,6 +363,7 @@ def process_traffic_video(
         "kinematics_summary": kinematics_summary,
         "macroscopic_analytics": macroscopic_analytics,
         "spatial_grounding": spatial_grounding,
+        "network_reasoning": network_reasoning,
         "pixels_per_meter": pixels_per_meter,
         "average_confidence": avg_conf,
         "output_video": output_path,
