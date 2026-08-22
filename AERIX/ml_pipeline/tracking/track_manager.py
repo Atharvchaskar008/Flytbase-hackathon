@@ -41,6 +41,7 @@ class TrackRecord:
     trajectory: List[Dict[str, Any]] = field(default_factory=list)
     confidence_history: List[float] = field(default_factory=list)
     kinematics: Dict[str, Any] = field(default_factory=dict)
+    geodetic_position: Dict[str, Any] = field(default_factory=dict)
 
 
 class TrackManager:
@@ -295,6 +296,11 @@ class TrackManager:
         
         return points
     
+    def update_geodetic_position(self, track_id: int, geodetic_pos: Dict[str, Any]) -> None:
+        """Update georeferenced road network binding position for a track."""
+        if track_id in self.tracks:
+            self.tracks[track_id].geodetic_position = dict(geodetic_pos)
+
     def _record_to_summary(self, record: TrackRecord) -> Dict[str, Any]:
         """Convert a TrackRecord to a rich summary dict."""
         avg_conf = (
@@ -316,6 +322,7 @@ class TrackManager:
             'total_detections': record.total_detections,
             'avg_confidence': round(avg_conf, 4),
             'kinematics': record.kinematics,
+            'geodetic_position': record.geodetic_position,
             'trajectory': record.trajectory,
             'confidence_history': record.confidence_history,
         }

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AERIX — Macroscopic & Object-Level Traffic Intelligence</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         :root {
             --bg-primary: #0a0e1a;
@@ -625,8 +627,20 @@
             <div class="card-body" id="odMatrixBody">
                 <div style="color: var(--text-muted); font-size: 0.85rem;">No O-D data yet</div>
             </div>
-        </div>
+    </div>
 
+    <!-- Map-Native Spatial Grounding & Road Network Card -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <div class="card-header">
+            <span>🗺️ Map-Native Spatial Grounding & Road Network Binding</span>
+            <div style="display:flex; gap:0.75rem; align-items:center;">
+                <span class="badge badge-success" id="badgeSpatialGrounded">WGS84 Grounded</span>
+                <span style="font-size:0.75rem; color:var(--cyan);" id="telemetrySummaryTag">Drone GPS: 37.7749°, -122.4194° | Alt: 85m | Pitch: -90°</span>
+            </div>
+        </div>
+        <div class="card-body" style="padding: 0;">
+            <div id="spatialMap" style="width: 100%; height: 440px; border-radius: 0 0 12px 12px; background: #090d16;"></div>
+        </div>
     </div>
 
     <!-- Bottom: Object-Level Kinematics Detail Table -->
@@ -848,9 +862,13 @@ function displayResults(data) {
         `).join('');
     }
 
-    // 8. Populate Kinematics Table
+    // 8. Populate Kinematics Table & Map-Native Grounding
     currentTracks = data.tracks || [];
     renderKinematicsTable(currentTracks);
+
+    if (data.spatial_grounding) {
+        renderSpatialMap(data.spatial_grounding, currentTracks);
+    }
 
     // Video — only update when final result has video URL
     if (data.output_video_url) {
@@ -866,6 +884,159 @@ function displayResults(data) {
         videoBadge.className = 'badge badge-success';
         reprocessBtn.disabled = false;
     }
+}
+
+// ── Leaflet Spatial Map Engine ─────────────────────
+let leafletMap = null;
+let mapLayers = {
+    roadNetwork: null,
+    desireLines: null,
+    queueExtents: null,
+    vehicleMarkers: null,
+};
+
+function initLeafletMap(centerLat, centerLon) {
+    if (leafletMap) return;
+    const mapDiv = document.getElementById('spatialMap');
+    if (!mapDiv) return;
+
+    leafletMap = L.map('spatialMap', { zoomControl: true }).setView([centerLat || 37.774929, centerLon || -122.419416], 18);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 20,
+        subdomains: 'abcd',
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+    }).addTo(leafletMap);
+
+    mapLayers.roadNetwork = L.layerGroup().addTo(leafletMap);
+    mapLayers.desireLines = L.layerGroup().addTo(leafletMap);
+    mapLayers.queueExtents = L.layerGroup().addTo(leafletMap);
+    mapLayers.vehicleMarkers = L.layerGroup().addTo(leafletMap);
+}
+
+function renderSpatialMap(spatial, tracks) {
+    const center = spatial.intersection_center || {};
+    const lat = center.latitude || 37.774929;
+    const lon = center.longitude || -122.419416;
+
+    initLeafletMap(lat, lon);
+    if (!leafletMap) return;
+
+    leafletMap.setView([lat, lon], 18);
+
+    // Update Telemetry Header
+    const flight = spatial.flight_telemetry || {};
+    document.getElementById('telemetrySummaryTag').textContent = 
+        `Drone GPS: ${(flight.center_latitude || lat).toFixed(4)}°, ${(flight.center_longitude || lon).toFixed(4)}° | Alt: ${flight.mean_altitude_meters || 85}m | Pitch: ${flight.mean_gimbal_pitch_deg || -90}°`;
+
+    // 1. Render Road Network & Lane Polygons
+    mapLayers.roadNetwork.clearLayers();
+    if (spatial.per_lane_metrics_geojson) {
+        L.geoJSON(spatial.per_lane_metrics_geojson, {
+            style: (feature) => {
+                const props = feature.properties || {};
+                const type = props.lane_type || 'through';
+                const vol = props.traffic_volume || 0;
+
+                let fillColor = '#3b82f6';
+                if (type === 'left_turn') fillColor = '#8b5cf6';
+                else if (vol > 15) fillColor = '#ef4444';
+                else if (vol > 5) fillColor = '#f59e0b';
+
+                return {
+                    color: fillColor,
+                    weight: 2,
+                    opacity: 0.8,
+                    fillColor: fillColor,
+                    fillOpacity: 0.25,
+                };
+            },
+            onEachFeature: (feature, layer) => {
+                const p = feature.properties || {};
+                layer.bindPopup(`
+                    <div style="color:#000; font-family:sans-serif; font-size:12px;">
+                        <b>Lane: ${p.lane_id}</b><br/>
+                        Link: ${p.link_id} (${p.approach})<br/>
+                        Volume: ${p.traffic_volume || 0} vehicles<br/>
+                        Avg Speed: ${p.average_speed_kmh || 50} km/h<br/>
+                        Speed Limit: ${p.speed_limit_kmh} km/h
+                    </div>
+                `);
+            }
+        }).addTo(mapLayers.roadNetwork);
+    }
+
+    // 2. Render Desire Lines
+    mapLayers.desireLines.clearLayers();
+    if (spatial.desire_lines_geojson) {
+        L.geoJSON(spatial.desire_lines_geojson, {
+            style: (feature) => {
+                const p = feature.properties || {};
+                return {
+                    color: p.color || '#8b5cf6',
+                    weight: p.stroke_width || 3,
+                    opacity: 0.85,
+                    dashArray: '6, 6',
+                };
+            },
+            onEachFeature: (feature, layer) => {
+                const p = feature.properties || {};
+                layer.bindPopup(`
+                    <div style="color:#000; font-size:12px;">
+                        <b>Desire Line: ${p.origin} &rarr; ${p.destination}</b><br/>
+                        Volume: ${p.volume} trips (${p.proportion_pct}%)
+                    </div>
+                `);
+            }
+        }).addTo(mapLayers.desireLines);
+    }
+
+    // 3. Render Queue Extents along Carriageway
+    mapLayers.queueExtents.clearLayers();
+    if (spatial.queue_extents_geojson) {
+        L.geoJSON(spatial.queue_extents_geojson, {
+            style: (feature) => {
+                const p = feature.properties || {};
+                return {
+                    color: p.color || '#ef4444',
+                    weight: 6,
+                    opacity: 0.9,
+                };
+            },
+            onEachFeature: (feature, layer) => {
+                const p = feature.properties || {};
+                layer.bindPopup(`
+                    <div style="color:#000; font-size:12px;">
+                        <b style="color:red;">🛑 Queue Extent: ${p.lane_id}</b><br/>
+                        Length: ${p.queue_length_meters} meters<br/>
+                        Queued Vehicles: ${p.queued_vehicles_count}
+                    </div>
+                `);
+            }
+        }).addTo(mapLayers.queueExtents);
+    }
+
+    // 4. Render Vehicle Markers on Map
+    mapLayers.vehicleMarkers.clearLayers();
+    (tracks || []).forEach(t => {
+        const geo = t.geodetic_position || {};
+        if (geo.latitude && geo.longitude) {
+            const fg = t.fine_grained_class || t.class_label || 'vehicle';
+            const k = t.kinematics || {};
+            const spd = (k.current_speed_kmh !== undefined ? k.current_speed_kmh : (k.average_speed_kmh || 0)).toFixed(1);
+
+            const marker = L.circleMarker([geo.latitude, geo.longitude], {
+                radius: 6,
+                fillColor: fg.includes('hgv') || fg.includes('truck') ? '#ef4444' : (fg.includes('bus') ? '#f59e0b' : '#38bdf8'),
+                color: '#ffffff',
+                weight: 1.5,
+                opacity: 1,
+                fillOpacity: 0.9,
+            });
+
+            marker.bindTooltip(`#${t.track_id} ${fg} (${spd} km/h)<br/>${geo.link_name || ''} [${geo.lane_id || ''}]`, { permanent: false });
+            marker.addTo(mapLayers.vehicleMarkers);
+        }
+    });
 }
 
 function renderKinematicsTable(tracks) {

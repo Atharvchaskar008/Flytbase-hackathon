@@ -4,9 +4,16 @@
 
 ---
 
-## 🌟 Comprehensive Platform Capabilities
+### 1. Spatial Grounding & Map-Native Topology Engine
+- **SRT Telemetry Ingestion (`srt_parser.py`)**: Extracts per-frame drone GPS coordinates ($lat, lon$), altitude ($alt$), gimbal 3D orientation (pitch, roll, yaw), and ISO timestamps.
+- **Ground-Plane Camera Projection (`ground_projector.py`)**: 3D pinhole camera ray intersection projecting video bounding box contact points $(u, v)$ to real-world WGS84 geographic coordinates ($lat, lon$) and metric local tangent displacement ($m$).
+- **Moment-to-Moment Road Network Binding (`road_network.py`)**: Snaps each vehicle trajectory to the physical road topology: correct **link**, **approach**, **travel direction**, and **lane index** ($1, 2, \dots, N$).
+- **Map-Native Desire Lines**: Generates GeoJSON Bézier flow vectors connecting origin approach $\rightarrow$ destination approach over the actual road layout with volume thickness and modal split percentages.
+- **Carriageway Queue Extents**: Projects stopped/queued vehicles onto physical lane centerlines to output GeoJSON line segments representing exact queue extents ($m$) along the carriageway.
+- **Per-Lane Real Geometry Metrics**: Binds traffic volume, average speed, and vehicle modal breakdown directly to GeoJSON lane polygons.
+- **Leaflet Dark-Mode Satellite Map**: Embedded interactive map displaying real-time vehicle GPS markers, lane polygons, desire lines, and queue extents.
 
-### 1. Macroscopic & Aggregate Traffic Analytics
+### 2. Macroscopic & Aggregate Traffic Analytics
 - **Turning Movements & Intersection Flows**: Automated classification of turning maneuvers (`Through / Straight`, `Left Turn`, `Right Turn`, `U-Turn`) and directional approach volumes (`Northbound`, `Southbound`, `Eastbound`, `Westbound`).
 - **Origin–Destination (O-D) Distributions**: Entry gate $\rightarrow$ Exit gate matrix with trip counts and route distribution percentages.
 - **Segment-Wise Speed Profiles & Speeding Hotspots**: Corridor discretization computing Mean Speed, 85th Percentile Speed (P85), 15th Percentile Speed (P15), Speed Variance, and spatial speeding risk heatmaps.
@@ -14,7 +21,7 @@
 - **Queue Length & Delay Estimation**: Real-world standing queue lengths in meters, queued vehicle count, and average dwell delay behind stop lines and bottlenecks.
 - **Density, Occupancy & Flow–Density (MFD) Relationships**: Traffic Density $k$ ($\text{veh/km}$), Road Area Occupancy percentage ($O\%$), Hourly Flow Rate $q$ ($\text{veh/hour}$), and Highway Capacity Manual Level of Service (LOS A to F).
 
-### 2. Object-Level Insights & Fine-Grained Classification
+### 3. Object-Level Insights & Fine-Grained Classification
 - **Fine-Grained Sub-Types**:
   - `car` → `sedan`, `suv`, `hatchback`, `van`
   - `truck` → `lgv` (Light Goods Vehicle / Pickup / Van) vs `hgv` (Heavy Goods Vehicle / Semi / Box Truck)
@@ -29,10 +36,10 @@
   - Dynamic motion states (`Cruising`, `Accelerating`, `Braking`, `Stopped`).
   - Supports configurable metric scale (`--pixels-per-meter`, default $15.0\,\text{px/m}$) and Homography calibration.
 
-### 3. Tracking & Visual Analytics
+### 4. Tracking & Visual Analytics
 - **ByteTrack Persistent Identity**: High-performance multi-object tracking using Kalman motion state estimation and Hungarian assignment algorithms.
 - **Trajectory Trails & Velocity Vectors**: Dynamic motion history trails and directional velocity vectors rendered on output videos.
-- **Interactive Web Dashboard**: Single-page dark-themed analytics interface (`http://localhost:8888`) with real-time Macroscopic Intelligence panels, turning movement charts, O-D matrix, speed profiles, and a live searchable Object Telemetry Table.
+- **Interactive Web Dashboard**: Single-page dark-themed analytics interface (`http://localhost:8888`) with real-time Macroscopic Intelligence panels, turning movement charts, O-D matrix, speed profiles, Leaflet Satellite Map, and a live searchable Object Telemetry Table.
 
 ---
 

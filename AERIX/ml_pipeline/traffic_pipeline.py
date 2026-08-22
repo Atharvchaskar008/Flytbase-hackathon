@@ -29,6 +29,7 @@ from ml_pipeline.detection.yolo_detector import YOLODetector
 from ml_pipeline.tracking.bytetrack import ByteTrackTracker
 from ml_pipeline.tracking.track_manager import TrackManager
 from ml_pipeline.analytics.aggregate_analytics import MacroTrafficAnalyticsEngine
+from ml_pipeline.spatial.spatial_grounding_engine import SpatialGroundingEngine
 
 # ── Logging ──────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -146,6 +147,14 @@ def process_traffic_video(
         sample_rate=sample_rate,
     )
 
+    # ── Initialize Spatial Grounding Engine ──────────────────────────
+    srt_candidate = Path(video_path).with_suffix(".srt")
+    srt_path = str(srt_candidate) if srt_candidate.exists() else None
+    spatial_engine = SpatialGroundingEngine(
+        srt_path=srt_path,
+        frame_shape=(loader.height, loader.width),
+    )
+
     # ── Video writer ─────────────────────────────────────────────────
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     writer = cv2.VideoWriter(
@@ -181,18 +190,26 @@ def process_traffic_video(
             # ── Track ────────────────────────────────────────────────
             tracked_objects, lifecycle = tracker.update(detections, frame_number)
 
+            # ── Spatial Grounding & Road Network Binding ─────────────
+            telemetry, grounded_objects = spatial_engine.process_frame_tracks(
+                tracked_objects, frame_number, fps=loader.fps
+            )
+
             # ── Update track history & kinematics ────────────────────
             track_manager.update(
-                tracked_objects,
+                grounded_objects,
                 frame_number,
                 loader.fps,
                 frame_shape=(loader.height, loader.width),
             )
+            for gobj in grounded_objects:
+                track_manager.update_geodetic_position(gobj['track_id'], gobj['geodetic_position'])
+
             track_manager.mark_lost(lifecycle.get('lost', []))
 
             # ── Annotate & write ─────────────────────────────────────
             annotated = _annotate_frame(
-                frame, tracked_objects, track_manager,
+                frame, grounded_objects, track_manager,
                 draw_trails=draw_trails,
                 draw_vectors=draw_vectors,
                 trail_length=trail_length,
@@ -229,6 +246,19 @@ def process_traffic_video(
                     except Exception:
                         live_macro = {}
 
+                # Compute live spatial grounding layers
+                live_spatial = {}
+                if len(all_sums) > 0:
+                    try:
+                        live_spatial = spatial_engine.generate_map_native_analytics(
+                            tracks=all_sums,
+                            od_matrix=live_macro.get("origin_destination_matrix"),
+                            last_frame_number=frame_number,
+                            fps=loader.fps,
+                        )
+                    except Exception:
+                        live_spatial = {}
+
                 if progress_callback:
                     try:
                         progress_callback({
@@ -242,6 +272,7 @@ def process_traffic_video(
                             "fine_grained_class_counts": fine_counts,
                             "kinematics_summary": kin_summary,
                             "macroscopic_analytics": live_macro,
+                            "spatial_grounding": live_spatial,
                             "active_tracks": len(tracker.active_tracks),
                             "tracks": all_sums,
                         })
@@ -289,6 +320,14 @@ def process_traffic_video(
         frame_shape=(loader.height, loader.width),
     )
 
+    # Calculate map-native spatial grounding and topology
+    spatial_grounding = spatial_engine.generate_map_native_analytics(
+        tracks=all_summaries,
+        od_matrix=macroscopic_analytics.get("origin_destination_matrix"),
+        last_frame_number=frames_processed,
+        fps=loader.fps,
+    )
+
     result = {
         "video_id": Path(video_path).stem,
         "status": "completed",
@@ -301,6 +340,7 @@ def process_traffic_video(
         "fine_grained_class_counts": fine_counts,
         "kinematics_summary": kinematics_summary,
         "macroscopic_analytics": macroscopic_analytics,
+        "spatial_grounding": spatial_grounding,
         "pixels_per_meter": pixels_per_meter,
         "average_confidence": avg_conf,
         "output_video": output_path,
