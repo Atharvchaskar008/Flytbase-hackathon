@@ -1,0 +1,1 @@
+-- TRACE database schema

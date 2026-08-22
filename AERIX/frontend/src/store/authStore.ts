@@ -1,0 +1,2 @@
+// Authentication store placeholder
+export {};

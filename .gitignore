@@ -1,0 +1,21 @@
+# Ignore media binaries
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+
+# Storage videos & uploads
+AERIX/storage/uploads/*
+AERIX/storage/videos/*
+!AERIX/storage/uploads/.gitkeep
+!AERIX/storage/videos/.gitkeep
+
+# Node modules
+node_modules/

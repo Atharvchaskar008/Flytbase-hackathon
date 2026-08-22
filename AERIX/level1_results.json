@@ -1,0 +1,40 @@
+{
+  "video_id": "upload_91d614bd",
+  "status": "completed",
+  "frames_processed": 2400,
+  "detections": 12480,
+  "detection_errors": 0,
+  "unique_tracks": 179,
+  "classes_detected": [
+    "bus",
+    "car",
+    "motorcycle",
+    "person",
+    "truck"
+  ],
+  "class_counts": {
+    "car": 124,
+    "truck": 18,
+    "motorcycle": 28,
+    "bus": 4,
+    "person": 5
+  },
+  "average_confidence": 0.9142,
+  "output_video": "storage/videos/level1_output.mp4",
+  "processing_time": 450.0,
+  "processing_time_seconds": 450.0,
+  "effective_fps_processed": 5.3,
+  "tracker_config": {
+    "track_activation_threshold": 0.25,
+    "lost_track_buffer": 30,
+    "minimum_matching_threshold": 0.8,
+    "frame_rate": 10
+  },
+  "model": "yolov8n.pt",
+  "sample_rate": 3,
+  "confidence_threshold": 0.25,
+  "limitations": [
+    "COCO model does not distinguish LGV/HGV — all trucks reported as 'truck'",
+    "Single-camera tracking only (no cross-camera Re-ID)"
+  ]
+}
